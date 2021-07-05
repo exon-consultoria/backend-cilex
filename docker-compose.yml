@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  database_cilex:
+    image: postgres
+    container_name: database_cilex
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=exon
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=cilex
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: cilex
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - database_cilex
+    depends_on:
+      - database_cilex
+volumes:
+  pgdata:
+    driver: local
