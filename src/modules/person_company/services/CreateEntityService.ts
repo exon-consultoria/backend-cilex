@@ -28,8 +28,6 @@ export default class CreateEntityService {
     person,
     company,
   }: IRequestDTO): Promise<PersonCompany> {
-    console.log(person);
-
     const checkPersonExist = await this.personRepository.findById(person);
 
     if (!checkPersonExist) {

@@ -25,8 +25,6 @@ export default class CreateEntityService {
   ) {}
 
   public async execute({ user, company }: IRequestDTO): Promise<UserCompany> {
-    console.log(user);
-
     const checkPersonExist = await this.userRepository.findById(user);
 
     if (!checkPersonExist) {
