@@ -1,7 +1,6 @@
 import { container } from 'tsyringe';
 
 import '@modules/user/providers';
-import './providers';
 
 import IUsersRepository from '@modules/user/repositories/IUsersRepository';
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UsersRepository';
