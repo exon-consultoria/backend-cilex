@@ -24,7 +24,7 @@ class EntityRepository implements IUserCompany {
 
   public async findByUser(id: string): Promise<UserCompany[]> {
     const result = await this.ormRepository.query(`
-    SELECT user_company.id, companies.cod, companies.razao_social, companies.id
+    SELECT user_company.id, companies.code, companies.razao_social, companies.id
     FROM user_company
     INNER JOIN companies on user_company.company_id=companies.id
     WHERE user_company.user_id='${id}'

@@ -15,7 +15,7 @@ describe('Create Company', () => {
 
   it('should be able to create a new company', async () => {
     const company = await createCompany.execute({
-      cod: '01',
+      code: '01',
       cnpj: '41427449000118',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -29,9 +29,9 @@ describe('Create Company', () => {
     expect(company).toHaveProperty('id');
   });
 
-  it('should NOT be able to create a new company with same cod', async () => {
+  it('should NOT be able to create a new company with same code', async () => {
     await createCompany.execute({
-      cod: '01',
+      code: '01',
       cnpj: '41427449000118',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -45,7 +45,7 @@ describe('Create Company', () => {
 
     await expect(
       createCompany.execute({
-        cod: '01',
+        code: '01',
         cnpj: '41427449000118',
         razao_social: 'Acme Corp.',
         nome_fantasia: 'Acme',

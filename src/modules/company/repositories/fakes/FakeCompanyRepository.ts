@@ -4,7 +4,15 @@ import { v4 as uuid } from 'uuid';
 import ICompanyRepository from '../ICompanyRepository';
 
 class FakeCompanyRepository implements ICompanyRepository {
+  findIsMatriz(): Promise<Company[]> {
+    throw new Error('Method not implemented.');
+  }
+
   private items: Company[] = [];
+
+  findByMatriz(matriz_id: string): Promise<Company[]> {
+    throw new Error('Method not implemented.');
+  }
 
   public async findAll(): Promise<Company[]> {
     return this.items;
@@ -16,8 +24,8 @@ class FakeCompanyRepository implements ICompanyRepository {
     return result;
   }
 
-  public async findByCod(cod: string): Promise<Company | undefined> {
-    const result = this.items.find(item => item.cod === cod);
+  public async findByCode(code: string): Promise<Company | undefined> {
+    const result = this.items.find(item => item.code === code);
 
     return result;
   }

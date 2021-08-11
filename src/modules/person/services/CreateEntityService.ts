@@ -19,6 +19,7 @@ interface IRequestDTO {
   info?: string;
   isUser: boolean;
   tipo?: string;
+  role_id?: string;
 }
 
 @injectable()
@@ -43,14 +44,17 @@ export default class CreateEntityService {
     info,
     isUser,
     tipo,
+    role_id,
   }: IRequestDTO): Promise<Person> {
-    const checkCodExist = await this.personRepository.findByCod(code);
+    const checkCodeExist = await this.personRepository.findByCode(code);
 
-    if (checkCodExist) {
+    if (checkCodeExist) {
       throw new AppError(
         "There's already a person registered with the same code",
       );
     }
+
+    // const checkCnpj
 
     const result = await this.personRepository.create({
       code,
@@ -67,6 +71,7 @@ export default class CreateEntityService {
       info,
       isUser,
       tipo,
+      role_id,
     });
 
     return result;

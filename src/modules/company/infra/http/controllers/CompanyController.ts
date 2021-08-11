@@ -10,7 +10,7 @@ import DeleteCompanyService from '@modules/company/services/DeleteCompanyService
 export default class CompanyController {
   public async create(req: Request, res: Response): Promise<Response> {
     const {
-      cod,
+      code,
       cnpj,
       razao_social,
       nome_fantasia,
@@ -23,10 +23,12 @@ export default class CompanyController {
       matriz_id,
     } = req.body;
 
+    const { user } = req;
+
     const createCompany = container.resolve(CreateCompanyService);
 
     const company = await createCompany.execute({
-      cod,
+      code,
       cnpj,
       razao_social,
       nome_fantasia,
@@ -37,15 +39,21 @@ export default class CompanyController {
       uf,
       info,
       matriz_id,
+      user: user.id,
     });
 
     return res.json(company);
   }
 
   public async index(req: Request, res: Response): Promise<Response> {
+    const { matriz_id, isMatriz } = req.query;
+
     const listService = container.resolve(ListCompanyService);
 
-    const list = await listService.execute();
+    const list = await listService.execute(
+      isMatriz as boolean,
+      matriz_id as string,
+    );
 
     return res.json(classToClass(list));
   }
@@ -62,7 +70,7 @@ export default class CompanyController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const {
-      cod,
+      code,
       cnpj,
       razao_social,
       nome_fantasia,
@@ -81,7 +89,7 @@ export default class CompanyController {
 
     const company = await update.execute({
       company_id: id as string,
-      cod,
+      code,
       cnpj,
       razao_social,
       nome_fantasia,

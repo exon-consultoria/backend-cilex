@@ -1,11 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import IUserCompany from '@modules/user_company/repositories/IUserCompany';
 import ICompanyRepository from '../repositories/ICompanyRepository';
 import Company from '../infra/typeorm/entities/Company';
 
 interface IRequestDTO {
-  cod: string;
+  code: string;
   cnpj: string;
   razao_social: string;
   nome_fantasia: string;
@@ -16,6 +17,7 @@ interface IRequestDTO {
   uf?: string;
   info?: string;
   matriz_id?: string;
+  user: string;
 }
 
 @injectable()
@@ -23,10 +25,13 @@ export default class CreateCompanyService {
   constructor(
     @inject('CompanyRepository')
     private companyRepository: ICompanyRepository,
+
+    @inject('UserCompanyRepository')
+    private userCompanyRepository: IUserCompany,
   ) {}
 
   public async execute({
-    cod,
+    code,
     cnpj,
     razao_social,
     nome_fantasia,
@@ -37,17 +42,24 @@ export default class CreateCompanyService {
     uf,
     info,
     matriz_id,
+    user,
   }: IRequestDTO): Promise<Company> {
-    const checkCodExist = await this.companyRepository.findByCod(cod);
+    const checkCodeExist = await this.companyRepository.findByCode(code);
 
-    if (checkCodExist) {
+    if (checkCodeExist) {
       throw new AppError(
         "There's already a company registered with the same code",
       );
     }
 
+    let isMatriz = true;
+
+    if (matriz_id) {
+      isMatriz = false;
+    }
+
     const result = await this.companyRepository.create({
-      cod,
+      code,
       cnpj,
       razao_social,
       nome_fantasia,
@@ -58,6 +70,12 @@ export default class CreateCompanyService {
       uf,
       info,
       matriz_id,
+      isMatriz,
+    });
+
+    await this.userCompanyRepository.create({
+      company: result.id,
+      user,
     });
 
     return result;

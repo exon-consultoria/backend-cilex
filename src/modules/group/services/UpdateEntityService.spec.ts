@@ -13,7 +13,7 @@ describe('Should be able to Update Company', () => {
 
   it('should be able to update a company', async () => {
     const company = await fakeCompanyRepository.create({
-      cod: '01',
+      code: '01',
       cnpj: '41427449000119',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -27,13 +27,13 @@ describe('Should be able to Update Company', () => {
 
     await updateCompany.execute({
       company_id: company.id,
-      cod: '02',
+      code: '02',
     });
   });
 
   it('should not be able to update a company code for one already used', async () => {
     const company = await fakeCompanyRepository.create({
-      cod: '01',
+      code: '01',
       cnpj: '41427449000119',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -46,7 +46,7 @@ describe('Should be able to Update Company', () => {
     });
 
     await fakeCompanyRepository.create({
-      cod: '02',
+      code: '02',
       cnpj: '41427449000119',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -61,7 +61,7 @@ describe('Should be able to Update Company', () => {
     await expect(
       updateCompany.execute({
         company_id: company.id,
-        cod: '02',
+        code: '02',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -70,7 +70,7 @@ describe('Should be able to Update Company', () => {
     await expect(
       updateCompany.execute({
         company_id: 'novalid-id',
-        cod: '02',
+        code: '02',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

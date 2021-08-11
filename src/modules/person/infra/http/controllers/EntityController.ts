@@ -24,6 +24,7 @@ export default class EntityController {
       info,
       isUser,
       tipo,
+      role_id,
     } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
@@ -43,6 +44,7 @@ export default class EntityController {
       info,
       isUser,
       tipo,
+      role_id,
     });
 
     return res.json(entity);

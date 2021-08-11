@@ -8,7 +8,7 @@ export default function ensureAdmin(
   next: NextFunction,
 ): void {
   if (!req.user.isAdmin) {
-    throw new AppError('NO , NO , NO, NOT HERE HONEY', 403);
+    throw new AppError('Not allowed', 403);
   }
 
   next();

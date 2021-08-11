@@ -10,6 +10,18 @@ class CompanyRepository implements ICompanyRepository {
     this.ormRepository = getRepository(Company);
   }
 
+  public async findIsMatriz(): Promise<Company[]> {
+    const result = await this.ormRepository.find({ where: { isMatriz: true } });
+
+    return result;
+  }
+
+  public async findByMatriz(matriz_id: string): Promise<Company[]> {
+    const result = await this.ormRepository.find({ where: { matriz_id } });
+
+    return result;
+  }
+
   public async findAll(): Promise<Company[]> {
     const result = await this.ormRepository.find();
 
@@ -22,14 +34,14 @@ class CompanyRepository implements ICompanyRepository {
     return result;
   }
 
-  public async findByCod(cod: string): Promise<Company | undefined> {
-    const result = await this.ormRepository.findOne({ where: { cod } });
+  public async findByCode(code: string): Promise<Company | undefined> {
+    const result = await this.ormRepository.findOne({ where: { code } });
 
     return result;
   }
 
   public async create({
-    cod,
+    code,
     cnpj,
     razao_social,
     nome_fantasia,
@@ -39,20 +51,22 @@ class CompanyRepository implements ICompanyRepository {
     cep,
     uf,
     info,
-    matriz,
+    matriz_id,
+    isMatriz,
   }: ICreateCompanyDTO): Promise<Company> {
     const result = this.ormRepository.create({
       cnpj,
-      cod,
+      code,
       cep,
       email,
       endereco,
-      matriz_id: matriz,
+      matriz_id,
       nome_fantasia,
       razao_social,
       uf,
       tel,
       info,
+      isMatriz,
     });
 
     await this.ormRepository.save(result);

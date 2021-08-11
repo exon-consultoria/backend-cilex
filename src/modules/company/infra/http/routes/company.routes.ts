@@ -1,15 +1,19 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
+import ensureAuthenticated from '@modules/user/infra/http/middlewares/ensureAuthenticated';
+import ensureAdmin from '@modules/user/infra/http/middlewares/ensureAdmin';
 import CompanyController from '../controllers/CompanyController';
 
 const companyRouter = Router();
 const companyController = new CompanyController();
 
+companyRouter.use(ensureAuthenticated, ensureAdmin);
+
 companyRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      cod: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(4),
       cnpj: Joi.string().required().min(14).max(18),
       razao_social: Joi.string().required(),
       nome_fantasia: Joi.string().required(),
@@ -29,7 +33,7 @@ companyRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      cod: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(4),
       cnpj: Joi.string().required().min(14).max(18),
       razao_social: Joi.string().required(),
       nome_fantasia: Joi.string(),

@@ -23,6 +23,7 @@ entityRouter.post(
       nome: Joi.string(),
       isUser: Joi.boolean().default(false),
       tipo: Joi.string(),
+      role_id: Joi.string(),
     },
   }),
   entityController.create,

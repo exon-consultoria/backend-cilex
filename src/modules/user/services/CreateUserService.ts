@@ -9,6 +9,7 @@ interface IRequestDTO {
   name: string;
   email: string;
   password: string;
+  isAdmin: boolean;
 }
 
 @injectable()
@@ -21,12 +22,21 @@ export default class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({ name, email, password }: IRequestDTO): Promise<User> {
+  public async execute({
+    name,
+    email,
+    password,
+    isAdmin,
+  }: IRequestDTO): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
       throw new AppError('Email address already used');
     }
+
+    // if (checkUserNameExists) {
+    //   throw new AppError('Username  already used');
+    // }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
@@ -34,6 +44,7 @@ export default class CreateUserService {
       name,
       email,
       password: hashedPassword,
+      isAdmin,
     });
 
     return user;

@@ -22,7 +22,7 @@ class CompanyRepository implements IPersonRepository {
     return result;
   }
 
-  public async findByCod(code: string): Promise<Person | undefined> {
+  public async findByCode(code: string): Promise<Person | undefined> {
     const result = await this.ormRepository.findOne({ where: { code } });
 
     return result;
@@ -43,6 +43,7 @@ class CompanyRepository implements IPersonRepository {
     cpf,
     nome,
     tipo,
+    role_id,
   }: ICreatePersonDTO): Promise<Person> {
     const result = this.ormRepository.create({
       code,
@@ -59,6 +60,7 @@ class CompanyRepository implements IPersonRepository {
       cpf,
       nome,
       tipo,
+      role_id,
     });
 
     await this.ormRepository.save(result);

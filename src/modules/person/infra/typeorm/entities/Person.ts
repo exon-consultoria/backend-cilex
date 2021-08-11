@@ -1,9 +1,12 @@
+import Role from '@modules/role/infra/typeorm/entities/Role';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity('people')
@@ -52,6 +55,13 @@ class Person {
 
   @Column('varchar')
   tipo: string;
+
+  @Column('varchar')
+  role_id: string;
+
+  @ManyToOne(() => Role)
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
 
   @CreateDateColumn()
   created_at: Date;

@@ -14,7 +14,7 @@ class Company {
   id: string;
 
   @Column('varchar')
-  cod: string;
+  code: string;
 
   @Column('varchar')
   cnpj: string;
@@ -39,6 +39,9 @@ class Company {
 
   @Column('varchar')
   uf: string;
+
+  @Column('boolean')
+  isMatriz: boolean;
 
   @Column('varchar')
   matriz_id: string;

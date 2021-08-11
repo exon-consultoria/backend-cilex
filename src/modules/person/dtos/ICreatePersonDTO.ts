@@ -13,4 +13,5 @@ export default interface ICreatePersonDTO {
   info?: string;
   isUser: boolean;
   tipo?: string;
+  role_id?: string;
 }

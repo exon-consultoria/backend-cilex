@@ -7,7 +7,7 @@ import Company from '../infra/typeorm/entities/Company';
 
 interface IRequestDTO {
   company_id: string;
-  cod?: string;
+  code?: string;
   cnpj?: string;
   razao_social?: string;
   nome_fantasia?: string;
@@ -29,7 +29,7 @@ export default class UpdateCompanyService {
 
   public async execute({
     company_id,
-    cod,
+    code,
     cnpj,
     nome_fantasia,
     razao_social,
@@ -46,10 +46,10 @@ export default class UpdateCompanyService {
       throw new AppError("There's no company with given ID");
     }
 
-    if (cod && cod !== company.cod) {
-      const checkCodExist = await this.companyRepository.findByCod(cod);
+    if (code && code !== company.code) {
+      const checkCodeExist = await this.companyRepository.findByCode(code);
 
-      if (checkCodExist) {
+      if (checkCodeExist) {
         throw new AppError(
           "There's already a company registered with the same code",
         );
@@ -60,7 +60,7 @@ export default class UpdateCompanyService {
       throw new AppError("There's no company with given ID");
     }
 
-    company.cod = cod || company.cod;
+    company.code = code || company.code;
     company.cnpj = cnpj || company.cnpj;
     company.nome_fantasia = nome_fantasia || company.nome_fantasia;
     company.razao_social = razao_social || company.razao_social;

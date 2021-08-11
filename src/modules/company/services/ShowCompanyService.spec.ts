@@ -13,7 +13,7 @@ describe('Show Company', () => {
 
   it('should be able to show a company', async () => {
     const comp1 = await fakeCompanyRepository.create({
-      cod: '01',
+      code: '01',
       cnpj: '41321449000118',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',

@@ -13,7 +13,7 @@ describe('Show Company', () => {
 
   it('should be able to delete a company', async () => {
     const comp1 = await fakeCompanyRepository.create({
-      cod: '01',
+      code: '01',
       cnpj: '41321449000118',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',
@@ -26,7 +26,7 @@ describe('Show Company', () => {
     });
 
     await fakeCompanyRepository.create({
-      cod: '02',
+      code: '02',
       cnpj: '41321449000118',
       razao_social: 'Acme Corp.',
       nome_fantasia: 'Acme',

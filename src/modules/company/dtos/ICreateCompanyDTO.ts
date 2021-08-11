@@ -1,5 +1,5 @@
 export default interface ICreateCompanyDTO {
-  cod: string;
+  code: string;
   cnpj: string;
   razao_social: string;
   nome_fantasia: string;
@@ -10,4 +10,5 @@ export default interface ICreateCompanyDTO {
   uf?: string;
   info?: string;
   matriz_id?: string;
+  isMatriz: boolean;
 }
