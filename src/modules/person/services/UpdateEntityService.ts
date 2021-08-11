@@ -21,6 +21,7 @@ interface IRequestDTO {
   info?: string;
   isUser?: boolean;
   tipo?: string;
+  role_id?: string;
 }
 
 @injectable()
@@ -46,6 +47,7 @@ export default class UpdateEntityService {
     info,
     isUser,
     tipo,
+    role_id,
   }: IRequestDTO): Promise<Person> {
     const entity = await this.personRepository.findById(id);
     if (!entity) {
@@ -53,7 +55,7 @@ export default class UpdateEntityService {
     }
 
     if (code && code !== entity.code) {
-      const checkCodExist = await this.personRepository.findByCod(code);
+      const checkCodExist = await this.personRepository.findByCode(code);
 
       if (checkCodExist) {
         throw new AppError(
@@ -80,6 +82,7 @@ export default class UpdateEntityService {
     entity.tipo = tipo || entity.tipo;
     entity.isUser = isUser || entity.isUser;
     entity.uf = uf || entity.uf;
+    entity.role_id = role_id || entity.role_id;
 
     return this.personRepository.update(entity);
   }

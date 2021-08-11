@@ -60,6 +60,12 @@ export default class UpdateCompanyService {
       throw new AppError("There's no company with given ID");
     }
 
+    let isMatriz = true;
+
+    if (company.matriz_id) {
+      isMatriz = false;
+    }
+
     company.code = code || company.code;
     company.cnpj = cnpj || company.cnpj;
     company.nome_fantasia = nome_fantasia || company.nome_fantasia;
@@ -71,6 +77,7 @@ export default class UpdateCompanyService {
     company.info = info || company.info;
     company.matriz_id = matriz_id || company.matriz_id;
     company.uf = uf || company.uf;
+    company.isMatriz = isMatriz;
 
     return this.companyRepository.update(company);
   }
