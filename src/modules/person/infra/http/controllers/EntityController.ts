@@ -84,6 +84,7 @@ export default class EntityController {
       info,
       isUser,
       tipo,
+      role_id,
     } = req.body;
 
     const { id } = req.params;
@@ -106,6 +107,7 @@ export default class EntityController {
       info,
       isUser,
       tipo,
+      role_id,
     });
 
     return res.json(entity);
