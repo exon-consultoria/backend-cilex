@@ -18,6 +18,13 @@ import RoleRepoitory from '@modules/role/infra/typeorm/repositories/EntityReposi
 import IRoleRepository from '@modules/role/repositories/IEntityRepository';
 import IUserCompany from '@modules/user_company/repositories/IUserCompany';
 import UserCompanyRepository from '@modules/user_company/infra/typeorm/repositories/EntityRepository';
+import IPendingUser from '@modules/pending_user/repositories/IEntityRepository';
+import PendingUserRepository from '@modules/pending_user/infra/typeorm/repositories/EntityRepository';
+
+container.registerSingleton<IPendingUser>(
+  'PendingUserRepository',
+  PendingUserRepository,
+);
 
 container.registerSingleton<IUserCompany>(
   'UserCompanyRepository',

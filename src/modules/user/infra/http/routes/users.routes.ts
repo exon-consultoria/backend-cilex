@@ -19,6 +19,20 @@ usersRouter.post(
   usersController.create,
 );
 
+usersRouter.post(
+  '/pending',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required().min(4).max(25),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      isAdmin: Joi.boolean().required(),
+      pendingUser_id: Joi.string().required(),
+    },
+  }),
+  usersController.createPendingUser,
+);
+
 usersRouter.get('/', usersController.index);
 
 export default usersRouter;

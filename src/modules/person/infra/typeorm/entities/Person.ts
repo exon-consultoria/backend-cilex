@@ -56,12 +56,14 @@ class Person {
   @Column('varchar')
   tipo: string;
 
-  @Column('varchar')
-  role_id: string;
-
-  @ManyToOne(() => Role)
+  @ManyToOne(() => Role, {
+    eager: true,
+  })
   @JoinColumn({ name: 'role_id' })
   role: Role;
+
+  @Column('varchar')
+  role_id: string;
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,3 +1,4 @@
+import Person from '@modules/person/infra/typeorm/entities/Person';
 import {
   Entity,
   Column,
@@ -8,22 +9,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { Exclude } from 'class-transformer';
-import Person from '@modules/person/infra/typeorm/entities/Person';
-
-@Entity('users')
-class User {
+@Entity('pending_users')
+class PendingUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column('varchar')
-  name: string;
-
-  @Column('varchar')
-  email: string;
-
-  @Column('boolean')
-  isAdmin: boolean;
 
   @ManyToOne(() => Person, {
     eager: true,
@@ -34,18 +23,11 @@ class User {
   @Column('varchar')
   person_id: string;
 
-  @Column('varchar')
-  @Exclude()
-  password: string;
-
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @Column('timestamp with time zone')
-  last_login: Date;
 }
 
-export default User;
+export default PendingUser;
