@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import IPendingRepository from '@modules/pending_user/repositories/IEntityRepository';
 import IPersonRepository from '../repositories/IPersonRepository';
 import Person from '../infra/typeorm/entities/Person';
 
@@ -27,6 +28,9 @@ export default class CreateEntityService {
   constructor(
     @inject('PersonRepository')
     private personRepository: IPersonRepository,
+
+    @inject('PendingUserRepository')
+    private pendingRepository: IPendingRepository,
   ) {}
 
   public async execute({
@@ -73,6 +77,10 @@ export default class CreateEntityService {
       tipo,
       role_id,
     });
+
+    if (isUser) {
+      await this.pendingRepository.create({ person_id: result.id });
+    }
 
     return result;
   }

@@ -88,6 +88,7 @@ export default class EntityController {
     } = req.body;
 
     const { id } = req.params;
+    console.log(isUser);
 
     const update = container.resolve(UpdateEntityService);
 

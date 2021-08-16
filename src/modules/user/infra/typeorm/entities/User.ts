@@ -25,6 +25,9 @@ class User {
   @Column('boolean')
   isAdmin: boolean;
 
+  @Column('boolean')
+  isActive: boolean;
+
   @ManyToOne(() => Person, {
     eager: true,
   })

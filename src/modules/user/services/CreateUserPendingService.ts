@@ -34,8 +34,6 @@ export default class CreateUserPendingService {
     isAdmin,
     pendingUser_id,
   }: IRequestDTO): Promise<User> {
-    console.log('rota certa');
-
     const pendingUser = await this.pendingUserRepository.findById(
       pendingUser_id,
     );
@@ -67,8 +65,6 @@ export default class CreateUserPendingService {
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
-
-    console.log(pendingUser.person_id);
 
     const user = await this.usersRepository.create({
       name,
