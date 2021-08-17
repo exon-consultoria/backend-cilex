@@ -10,6 +10,7 @@ import {
 
 import { Exclude } from 'class-transformer';
 import Person from '@modules/person/infra/typeorm/entities/Person';
+import Group from '@modules/group/infra/typeorm/entities/Group';
 
 @Entity('users')
 class User {
@@ -36,6 +37,15 @@ class User {
 
   @Column('varchar')
   person_id: string;
+
+  @ManyToOne(() => Group, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'group_id' })
+  group: Person;
+
+  @Column('varchar')
+  group_id: string;
 
   @Column('varchar')
   @Exclude()

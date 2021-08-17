@@ -57,8 +57,6 @@ export default class UpdateEntityService {
     tipo,
     role_id,
   }: IRequestDTO): Promise<Person> {
-    console.log(isUser);
-
     const entity = await this.personRepository.findById(id);
     if (!entity) {
       throw new AppError("There's no person with given ID");

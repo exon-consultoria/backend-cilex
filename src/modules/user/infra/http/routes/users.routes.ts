@@ -33,6 +33,22 @@ usersRouter.post(
   usersController.createPendingUser,
 );
 
+usersRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().min(4).max(25),
+      email: Joi.string().email(),
+      password: Joi.string(),
+      isAdmin: Joi.boolean(),
+      isActive: Joi.boolean(),
+      group_id: Joi.string(),
+    },
+  }),
+  usersController.update,
+);
+
+usersRouter.get('/:id', usersController.show);
 usersRouter.get('/', usersController.index);
 
 export default usersRouter;
