@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import IEntityRepository from '@modules/group/repositories/IEntityRepository';
 import IUsersRepository from '../repositories/IUsersRepository';
 import User from '../infra/typeorm/entities/User';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
@@ -23,6 +24,9 @@ export default class UpdateEntityService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('GroupRepository')
+    private groupRepository: IEntityRepository,
   ) {}
 
   public async execute({
@@ -69,13 +73,14 @@ export default class UpdateEntityService {
       entity.isActive = isActive;
     }
 
-    console.log(entity.group_id);
-
     entity.name = name || entity.name;
     entity.email = email || entity.email;
-    entity.group_id = group_id || entity.group_id;
 
-    console.log(entity);
+    const group = await this.groupRepository.findById(group_id);
+    if (!group) {
+      throw new AppError('No group_id found with given ID');
+    }
+    entity.group = group;
 
     return this.usersRepository.save(entity);
   }
