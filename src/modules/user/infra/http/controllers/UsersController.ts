@@ -12,7 +12,14 @@ export default class UsersController {
     req: Request,
     res: Response,
   ): Promise<Response> {
-    const { name, email, password, isAdmin, pendingUser_id } = req.body;
+    const {
+      name,
+      email,
+      password,
+      isAdmin,
+      pendingUser_id,
+      group_id,
+    } = req.body;
 
     const createUser = container.resolve(CreateUserPendingService);
 
@@ -22,13 +29,14 @@ export default class UsersController {
       password,
       isAdmin,
       pendingUser_id,
+      group_id,
     });
 
     return res.json(classToClass(user));
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { name, email, password, isAdmin } = req.body;
+    const { name, email, password, isAdmin, group_id } = req.body;
 
     const createUser = container.resolve(CreateUserService);
 
@@ -37,6 +45,7 @@ export default class UsersController {
       email,
       password,
       isAdmin,
+      group_id,
     });
 
     return res.json(classToClass(user));

@@ -12,6 +12,7 @@ interface IRequestDTO {
   password: string;
   isAdmin: boolean;
   pendingUser_id: string;
+  group_id: string;
 }
 
 @injectable()
@@ -33,6 +34,7 @@ export default class CreateUserPendingService {
     password,
     isAdmin,
     pendingUser_id,
+    group_id,
   }: IRequestDTO): Promise<User> {
     const pendingUser = await this.pendingUserRepository.findById(
       pendingUser_id,
@@ -72,6 +74,7 @@ export default class CreateUserPendingService {
       password: hashedPassword,
       isAdmin,
       person_id: pendingUser.person_id,
+      group_id,
     });
 
     await this.pendingUserRepository.delete(pendingUser);

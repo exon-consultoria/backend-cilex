@@ -4,4 +4,5 @@ export default interface ICreateUserDTO {
   password: string;
   isAdmin: boolean;
   person_id?: string;
+  group_id?: string;
 }

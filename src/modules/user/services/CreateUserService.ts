@@ -10,6 +10,7 @@ interface IRequestDTO {
   email: string;
   password: string;
   isAdmin: boolean;
+  group_id: string;
 }
 
 @injectable()
@@ -27,6 +28,7 @@ export default class CreateUserService {
     email,
     password,
     isAdmin,
+    group_id,
   }: IRequestDTO): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
@@ -47,6 +49,7 @@ export default class CreateUserService {
       email,
       password: hashedPassword,
       isAdmin,
+      group_id,
     });
 
     return user;

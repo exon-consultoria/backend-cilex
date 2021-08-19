@@ -50,6 +50,7 @@ class UsersRepository implements IUsersRepository {
     password,
     isAdmin,
     person_id,
+    group_id,
   }: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create({
       name,
@@ -57,6 +58,7 @@ class UsersRepository implements IUsersRepository {
       password,
       isAdmin,
       person_id,
+      group_id,
     });
 
     await this.ormRepository.save(user);
