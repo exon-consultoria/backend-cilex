@@ -22,13 +22,17 @@ import IPendingUser from '@modules/pending_user/repositories/IEntityRepository';
 import PendingUserRepository from '@modules/pending_user/infra/typeorm/repositories/EntityRepository';
 import IModules from '@modules/module/repositories/IEntityRepository';
 import ModuleRepository from '@modules/module/infra/typeorm/repositories/EntityRepository';
-import IGroupModule from '@modules/group_module/repositories/IEntityRepository';
-import GroupModuleRepository from '@modules/group_module/infra/typeorm/repositories/EntityRepository';
+import ISegment from '@modules/segment/repositories/IEntityRepository';
+import SegmentRepository from '@modules/segment/infra/typeorm/repositories/EntityRepository';
+import ISegmentModule from '@modules/segment_module/repositories/ISegmentModule';
+import SegmentModuleRepository from '@modules/segment_module/infra/typeorm/repositories/EntityRepository';
 
-container.registerSingleton<IGroupModule>(
-  'GroupModuleRepository',
-  GroupModuleRepository,
+container.registerSingleton<ISegmentModule>(
+  'SegmentModuleRepository',
+  SegmentModuleRepository,
 );
+
+container.registerSingleton<ISegment>('SegmentRepository', SegmentRepository);
 
 container.registerSingleton<IModules>('ModuleRepository', ModuleRepository);
 
