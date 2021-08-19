@@ -69,9 +69,13 @@ export default class UpdateEntityService {
       entity.isActive = isActive;
     }
 
+    console.log(entity.group_id);
+
     entity.name = name || entity.name;
     entity.email = email || entity.email;
     entity.group_id = group_id || entity.group_id;
+
+    console.log(entity);
 
     return this.usersRepository.save(entity);
   }

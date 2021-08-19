@@ -4,6 +4,8 @@ import personRouter from '@modules/person/infra/http/routes/entity.routes';
 import personCompanyRouter from '@modules/person_company/infra/http/routes/entity.routes';
 import userCompanyRouter from '@modules/user_company/infra/http/routes/entity.routes';
 import pendingUserRouter from '@modules/pending_user/infra/http/routes/entity.routes';
+import groupModuleRouter from '@modules/group_module/infra/http/routes/entity.routes';
+import moduleRouter from '@modules/module/infra/http/routes/entity.routes';
 
 import roleRouter from '@modules/role/infra/http/routes/entity.routes';
 import sessionsRouter from '@modules/user/infra/http/routes/sessions.routes';
@@ -12,6 +14,8 @@ import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/group_modules', groupModuleRouter);
+routes.use('/api/v1/modules', moduleRouter);
 routes.use('/api/v1/pendinguser', pendingUserRouter);
 routes.use('/api/v1/usercompany', userCompanyRouter);
 routes.use('/api/v1/personcompany', personCompanyRouter);

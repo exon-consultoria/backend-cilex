@@ -14,12 +14,23 @@ import IPersonCompany from '@modules/person_company/repositories/IPersonCompany'
 import PersonCompanyRepository from '@modules/person_company/infra/typeorm/repositories/EntityRepository';
 import GroupRepository from '@modules/group/infra/typeorm/repositories/EntityRepository';
 import IGroupRepository from '@modules/group/repositories/IEntityRepository';
-import RoleRepoitory from '@modules/role/infra/typeorm/repositories/EntityRepository';
+import RoleRepository from '@modules/role/infra/typeorm/repositories/EntityRepository';
 import IRoleRepository from '@modules/role/repositories/IEntityRepository';
 import IUserCompany from '@modules/user_company/repositories/IUserCompany';
 import UserCompanyRepository from '@modules/user_company/infra/typeorm/repositories/EntityRepository';
 import IPendingUser from '@modules/pending_user/repositories/IEntityRepository';
 import PendingUserRepository from '@modules/pending_user/infra/typeorm/repositories/EntityRepository';
+import IModules from '@modules/module/repositories/IEntityRepository';
+import ModuleRepository from '@modules/module/infra/typeorm/repositories/EntityRepository';
+import IGroupModule from '@modules/group_module/repositories/IEntityRepository';
+import GroupModuleRepository from '@modules/group_module/infra/typeorm/repositories/EntityRepository';
+
+container.registerSingleton<IGroupModule>(
+  'GroupModuleRepository',
+  GroupModuleRepository,
+);
+
+container.registerSingleton<IModules>('ModuleRepository', ModuleRepository);
 
 container.registerSingleton<IPendingUser>(
   'PendingUserRepository',
@@ -31,7 +42,7 @@ container.registerSingleton<IUserCompany>(
   UserCompanyRepository,
 );
 
-container.registerSingleton<IRoleRepository>('RoleRepository', RoleRepoitory);
+container.registerSingleton<IRoleRepository>('RoleRepository', RoleRepository);
 
 container.registerSingleton<IGroupRepository>(
   'GroupRepository',

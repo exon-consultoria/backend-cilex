@@ -29,20 +29,20 @@ class User {
   @Column('boolean')
   isActive: boolean;
 
+  @Column('varchar')
+  person_id: string;
+
   @ManyToOne(() => Person, {
     eager: true,
   })
   @JoinColumn({ name: 'person_id' })
   person: Person;
 
-  @Column('varchar')
-  person_id: string;
-
   @ManyToOne(() => Group, {
     eager: true,
   })
   @JoinColumn({ name: 'group_id' })
-  group: Person;
+  group: Group;
 
   @Column('varchar')
   group_id: string;
