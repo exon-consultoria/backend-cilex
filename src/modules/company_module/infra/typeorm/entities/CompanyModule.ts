@@ -16,7 +16,7 @@ class CompanyModule {
   @Column()
   module_id: string;
 
-  @ManyToOne(() => Module)
+  @ManyToOne(() => Module, { eager: true })
   @JoinColumn({ name: 'module_id' })
   module: Module;
 
