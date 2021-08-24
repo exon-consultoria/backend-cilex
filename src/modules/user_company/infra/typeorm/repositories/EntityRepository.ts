@@ -10,6 +10,17 @@ class EntityRepository implements IUserCompany {
     this.ormRepository = getRepository(UserCompany);
   }
 
+  public async findRelation(
+    company_id: string,
+    user_id: string,
+  ): Promise<UserCompany | undefined> {
+    const result = await this.ormRepository.findOne({
+      where: { company_id, user_id },
+    });
+
+    return result;
+  }
+
   public async findAll(): Promise<UserCompany[]> {
     const result = await this.ormRepository.find();
 

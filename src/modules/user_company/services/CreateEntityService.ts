@@ -37,6 +37,17 @@ export default class CreateEntityService {
       throw new AppError('No  company founded');
     }
 
+    // Checking duplicate company relation with user;
+
+    const checkRelation = await this.userCompanyRepository.findRelation(
+      company,
+      user,
+    );
+
+    if (checkRelation) {
+      throw new AppError('This user already has access to the company');
+    }
+
     const result = await this.userCompanyRepository.create({
       user,
       company,

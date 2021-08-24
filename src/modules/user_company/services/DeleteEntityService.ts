@@ -13,7 +13,7 @@ export default class DeleteEntityService {
     const result = await this.userCompanyRepository.findById(id);
 
     if (!result) {
-      throw new AppError("There's no Person/Company with given ID");
+      throw new AppError("There's no USER/Company with given ID");
     }
 
     await this.userCompanyRepository.delete(result);
