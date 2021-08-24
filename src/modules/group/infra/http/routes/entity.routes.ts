@@ -11,6 +11,7 @@ entityRouter.post(
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(4),
       description: Joi.string().required(),
+      modules: Joi.array(),
     },
   }),
   entityController.create,
@@ -22,6 +23,7 @@ entityRouter.put(
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(4),
       description: Joi.string().required(),
+      modules: Joi.array(),
     },
   }),
   entityController.update,
