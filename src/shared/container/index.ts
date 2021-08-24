@@ -26,6 +26,20 @@ import ISegment from '@modules/segment/repositories/IEntityRepository';
 import SegmentRepository from '@modules/segment/infra/typeorm/repositories/EntityRepository';
 import ISegmentModule from '@modules/segment_module/repositories/ISegmentModule';
 import SegmentModuleRepository from '@modules/segment_module/infra/typeorm/repositories/EntityRepository';
+import CompanyModuleRepository from '@modules/company_module/infra/typeorm/repositories/EntityRepository';
+import ICompanyModuleRepository from '@modules/company_module/repositories/IEntityRepository';
+import GroupModuleRepository from '@modules/group_module/infra/typeorm/repositories/EntityRepository';
+import IGroupModuleRepository from '@modules/group_module/repositories/IEntityRepository';
+
+container.registerSingleton<IGroupModuleRepository>(
+  'GroupModuleRepository',
+  GroupModuleRepository,
+);
+
+container.registerSingleton<ICompanyModuleRepository>(
+  'CompanyModuleRepository',
+  CompanyModuleRepository,
+);
 
 container.registerSingleton<ISegmentModule>(
   'SegmentModuleRepository',
