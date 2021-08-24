@@ -7,6 +7,8 @@ import pendingUserRouter from '@modules/pending_user/infra/http/routes/entity.ro
 import segmentRouter from '@modules/segment/infra/http/routes/entity.routes';
 import moduleRouter from '@modules/module/infra/http/routes/entity.routes';
 import segmentModuleRouter from '@modules/segment_module/infra/http/routes/entity.routes';
+import groupModuleRouter from '@modules/group_module/infra/http/routes/entity.routes';
+import companyModuleRouter from '@modules/company_module/infra/http/routes/entity.routes';
 
 import roleRouter from '@modules/role/infra/http/routes/entity.routes';
 import sessionsRouter from '@modules/user/infra/http/routes/sessions.routes';
@@ -15,6 +17,8 @@ import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/group_modules', groupModuleRouter);
+routes.use('/api/v1/company_modules', companyModuleRouter);
 routes.use('/api/v1/segment_modules', segmentModuleRouter);
 routes.use('/api/v1/segment', segmentRouter);
 routes.use('/api/v1/modules', moduleRouter);

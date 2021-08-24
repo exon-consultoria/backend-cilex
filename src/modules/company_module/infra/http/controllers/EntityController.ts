@@ -8,13 +8,13 @@ import DeleteEntityService from '@modules/company_module/services/DeleteEntitySe
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { company_id, module_id } = req.body;
+    const { company, module } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
-      company_id,
-      module_id,
+      company_id: company,
+      module_id: module,
     });
 
     return res.json(entity);

@@ -9,8 +9,8 @@ entityRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      module_id: Joi.string().uuid(),
-      company_id: Joi.string().uuid(),
+      module: Joi.string().uuid(),
+      company: Joi.string().uuid(),
     },
   }),
   entityController.create,
