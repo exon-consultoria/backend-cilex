@@ -4,6 +4,7 @@ import AppError from '@shared/errors/AppError';
 
 import IEntityRepository from '@modules/pending_user/repositories/IEntityRepository';
 import IUsersRepository from '@modules/user/repositories/IUsersRepository';
+import IRoleRepository from '@modules/role/repositories/IEntityRepository';
 import IPersonRepository from '../repositories/IPersonRepository';
 import Person from '../infra/typeorm/entities/Person';
 
@@ -37,6 +38,9 @@ export default class UpdateEntityService {
 
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
+    @inject('RoleRepository')
+    private roleRepository: IRoleRepository,
   ) {}
 
   public async execute({
@@ -110,6 +114,14 @@ export default class UpdateEntityService {
       entity.isUser = false;
     }
 
+    if (role_id) {
+      const role = await this.roleRepository.findById(role_id);
+      if (!role) {
+        throw new AppError('No role_id found with given ID');
+      }
+      entity.role = role;
+    }
+
     entity.code = code || entity.code;
     entity.cpf = cpf || entity.cpf;
     entity.nome = nome || entity.nome;
@@ -124,7 +136,6 @@ export default class UpdateEntityService {
     entity.tipo = tipo || entity.tipo;
 
     entity.uf = uf || entity.uf;
-    entity.role_id = role_id || entity.role_id;
 
     return this.personRepository.update(entity);
   }
