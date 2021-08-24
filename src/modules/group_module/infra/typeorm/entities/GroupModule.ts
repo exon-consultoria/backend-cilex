@@ -24,7 +24,7 @@ class GroupModule {
   group_id: string;
 
   @ManyToOne(() => Group)
-  @JoinColumn({ name: 'grou_id' })
+  @JoinColumn({ name: 'group_id' })
   group: Group;
 }
 
