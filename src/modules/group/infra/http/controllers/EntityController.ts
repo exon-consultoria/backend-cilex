@@ -9,13 +9,14 @@ import UpdateEntityService from '@modules/group/services/UpdateEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, description, modules } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       code,
       description,
+      modules,
     });
 
     return res.json(entity);
@@ -40,7 +41,7 @@ export default class EntityController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, description, modules } = req.body;
 
     const { id } = req.params;
 
@@ -50,6 +51,7 @@ export default class EntityController {
       id: id as string,
       code,
       description,
+      modules,
     });
 
     return res.json(entity);

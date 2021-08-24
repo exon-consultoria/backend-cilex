@@ -9,7 +9,7 @@ import IEntityRepository from '../repositories/IEntityRepository';
 interface IRequestDTO {
   code: string;
   description: string;
-  modules: [];
+  modules: string[];
 }
 
 @injectable()
@@ -65,6 +65,11 @@ export default class CreateEntityService {
           `There's already a group/module relation with ID: ${checkRelation.id}`,
         );
       }
+
+      await this.groupModuleRepository.create({
+        group_id: result.id,
+        module_id: module,
+      });
     });
 
     return result;
