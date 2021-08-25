@@ -2,6 +2,11 @@ import { inject, injectable } from 'tsyringe';
 import GroupModule from '../infra/typeorm/entities/GroupModule';
 import IEntityRepository from '../repositories/IEntityRepository';
 
+interface IRequest {
+  module_id: string | undefined;
+  group_id: string | undefined;
+}
+
 @injectable()
 export default class ListEntityService {
   constructor(
@@ -9,15 +14,18 @@ export default class ListEntityService {
     private groupModuleRepository: IEntityRepository,
   ) {}
 
-  public async execute(module: string, group: string): Promise<GroupModule[]> {
+  public async execute({
+    group_id,
+    module_id,
+  }: IRequest): Promise<GroupModule[]> {
     let result = await this.groupModuleRepository.findAll();
 
-    if (module) {
-      result = await this.groupModuleRepository.findByModule(module);
+    if (module_id) {
+      result = await this.groupModuleRepository.findByModule(module_id);
     }
 
-    if (group) {
-      result = await this.groupModuleRepository.findByGroup(group);
+    if (group_id) {
+      result = await this.groupModuleRepository.findByGroup(group_id);
     }
 
     return result;

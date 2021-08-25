@@ -24,7 +24,12 @@ export default class EntityController {
     const { group, module } = req.query;
     const listEntity = container.resolve(ListEntityService);
 
-    const list = await listEntity.execute(group as string, module as string);
+    console.log(group, module);
+
+    const list = await listEntity.execute({
+      group_id: group as string,
+      module_id: module as string,
+    });
 
     return res.json(classToClass(list));
   }
