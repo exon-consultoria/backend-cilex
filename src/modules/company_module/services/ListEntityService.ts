@@ -2,6 +2,11 @@ import { inject, injectable } from 'tsyringe';
 import CompanyModule from '../infra/typeorm/entities/CompanyModule';
 import IEntityRepository from '../repositories/IEntityRepository';
 
+interface IRequest {
+  module: string | undefined;
+  company: string | undefined;
+}
+
 @injectable()
 export default class ListEntityService {
   constructor(
@@ -9,10 +14,10 @@ export default class ListEntityService {
     private companyModuleRepository: IEntityRepository,
   ) {}
 
-  public async execute(
-    module: string,
-    company: string,
-  ): Promise<CompanyModule[]> {
+  public async execute({
+    module,
+    company,
+  }: IRequest): Promise<CompanyModule[]> {
     let result = await this.companyModuleRepository.findAll();
 
     if (module) {

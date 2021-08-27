@@ -21,12 +21,15 @@ export default class EntityController {
   }
 
   public async index(req: Request, res: Response): Promise<Response> {
-    const { company, module } = req.query;
+    const { company_id, module_id } = req.query;
     const listEntity = container.resolve(ListEntityService);
 
-    const list = await listEntity.execute(company as string, module as string);
+    const result = await listEntity.execute({
+      company: company_id as string,
+      module: module_id as string,
+    });
 
-    return res.json(classToClass(list));
+    return res.json(classToClass(result));
   }
 
   public async show(req: Request, res: Response): Promise<Response> {
