@@ -1,3 +1,4 @@
+import Segment from '@modules/segment/infra/typeorm/entities/Segment';
 import {
   Entity,
   Column,
@@ -49,6 +50,13 @@ class Company {
   @ManyToOne(() => Company)
   @JoinColumn({ name: 'matriz_id' })
   matriz: Company;
+
+  @Column('varchar')
+  segment_id: string;
+
+  @ManyToOne(() => Segment)
+  @JoinColumn({ name: 'segment_id' })
+  segment: Segment;
 
   @Column('varchar')
   info: string;

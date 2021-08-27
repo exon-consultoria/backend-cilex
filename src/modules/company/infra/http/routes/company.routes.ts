@@ -24,6 +24,7 @@ companyRouter.post(
       uf: Joi.string().allow(''),
       info: Joi.string().allow(''),
       matriz_id: Joi.string().allow(''),
+      segment_id: Joi.string().allow(''),
     },
   }),
   companyController.create,

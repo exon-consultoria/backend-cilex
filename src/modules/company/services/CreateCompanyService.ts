@@ -2,6 +2,9 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 import IUserCompany from '@modules/user_company/repositories/IUserCompany';
+import ISegmentRepository from '@modules/segment/repositories/IEntityRepository';
+import ISegmentModuleRepository from '@modules/segment_module/repositories/ISegmentModule';
+import ICompanyModulesRepository from '@modules/company_module/repositories/IEntityRepository';
 import ICompanyRepository from '../repositories/ICompanyRepository';
 import Company from '../infra/typeorm/entities/Company';
 
@@ -18,6 +21,7 @@ interface IRequestDTO {
   info?: string;
   matriz_id?: string;
   user: string;
+  segment: string;
 }
 
 @injectable()
@@ -28,6 +32,15 @@ export default class CreateCompanyService {
 
     @inject('UserCompanyRepository')
     private userCompanyRepository: IUserCompany,
+
+    @inject('SegmentRepository')
+    private segmentRepository: ISegmentRepository,
+
+    @inject('SegmentModuleRepository')
+    private segmentModuleRepository: ISegmentModuleRepository,
+
+    @inject('CompanyModuleRepository')
+    private companyModuleRepository: ICompanyModulesRepository,
   ) {}
 
   public async execute({
@@ -43,6 +56,7 @@ export default class CreateCompanyService {
     info,
     matriz_id,
     user,
+    segment,
   }: IRequestDTO): Promise<Company> {
     const checkCodeExist = await this.companyRepository.findByCode(code);
 
@@ -71,6 +85,17 @@ export default class CreateCompanyService {
       info,
       matriz_id,
       isMatriz,
+    });
+
+    const segmentModules = await this.segmentModuleRepository.findBySegment(
+      segment,
+    );
+
+    segmentModules.forEach(async k => {
+      await this.companyModuleRepository.create({
+        module_id: k.module_id,
+        company_id: result.id,
+      });
     });
 
     await this.userCompanyRepository.create({

@@ -21,6 +21,7 @@ export default class CompanyController {
       uf,
       info,
       matriz_id,
+      segment_id,
     } = req.body;
 
     const { user } = req;
@@ -40,6 +41,7 @@ export default class CompanyController {
       info,
       matriz_id,
       user: user.id,
+      segment: segment_id,
     });
 
     return res.json(company);
