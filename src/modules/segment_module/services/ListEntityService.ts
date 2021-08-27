@@ -2,6 +2,11 @@ import { inject, injectable } from 'tsyringe';
 import SegmentModule from '../infra/typeorm/entities/SegmentModule';
 import ISegmentModule from '../repositories/ISegmentModule';
 
+interface IRequest {
+  module_id: string | undefined;
+  segment_id: string | undefined;
+}
+
 @injectable()
 export default class ListEntityService {
   constructor(
@@ -9,18 +14,18 @@ export default class ListEntityService {
     private segmentModuleRepository: ISegmentModule,
   ) {}
 
-  public async execute(
-    module: string,
-    segment: string,
-  ): Promise<SegmentModule[]> {
+  public async execute({
+    segment_id,
+    module_id,
+  }: IRequest): Promise<SegmentModule[]> {
     let result = await this.segmentModuleRepository.findAll();
 
-    if (module) {
-      result = await this.segmentModuleRepository.findByModule(module);
+    if (module_id) {
+      result = await this.segmentModuleRepository.findByModule(module_id);
     }
 
-    if (segment) {
-      result = await this.segmentModuleRepository.findBySegment(segment);
+    if (segment_id) {
+      result = await this.segmentModuleRepository.findBySegment(segment_id);
     }
 
     return result;
