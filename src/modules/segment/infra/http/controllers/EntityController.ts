@@ -6,6 +6,7 @@ import ListEntityService from '@modules/segment/services/ListEntityService';
 import ShowEntityService from '@modules/segment/services/ShowEntityService';
 import DeleteEntityService from '@modules/segment/services/DeleteEntityService';
 import UpdateEntityService from '@modules/segment/services/UpdateEntityService';
+import ListSegmentModule from '@modules/segment/services/ListSegmentModule';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -25,6 +26,14 @@ export default class EntityController {
 
   public async index(req: Request, res: Response): Promise<Response> {
     const listEntity = container.resolve(ListEntityService);
+
+    const list = await listEntity.execute();
+
+    return res.json(classToClass(list));
+  }
+
+  public async indexFormatted(req: Request, res: Response): Promise<Response> {
+    const listEntity = container.resolve(ListSegmentModule);
 
     const list = await listEntity.execute();
 

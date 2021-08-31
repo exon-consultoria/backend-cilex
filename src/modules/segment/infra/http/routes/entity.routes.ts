@@ -31,6 +31,8 @@ entityRouter.put(
   entityController.update,
 );
 
+entityRouter.get('/segmentsModule', entityController.indexFormatted);
+
 entityRouter.get('/', entityController.index);
 
 entityRouter.get('/:id', entityController.show);
