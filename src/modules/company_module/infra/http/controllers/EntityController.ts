@@ -5,6 +5,7 @@ import CreateEntityService from '@modules/company_module/services/CreateEntitySe
 import ListEntityService from '@modules/company_module/services/ListEntityService';
 import ShowEntityService from '@modules/company_module/services/ShowEntityService';
 import DeleteEntityService from '@modules/company_module/services/DeleteEntityService';
+import ListCompanyModules from '@modules/company_module/services/ListCompanyModules';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -27,6 +28,17 @@ export default class EntityController {
     const result = await listEntity.execute({
       company: company_id as string,
       module: module_id as string,
+    });
+
+    return res.json(classToClass(result));
+  }
+
+  public async indexFormatted(req: Request, res: Response): Promise<Response> {
+    const { company_id } = req.query;
+    const listEntity = container.resolve(ListCompanyModules);
+
+    const result = await listEntity.execute({
+      company: company_id as string,
     });
 
     return res.json(classToClass(result));
