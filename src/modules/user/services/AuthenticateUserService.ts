@@ -31,6 +31,10 @@ export default class AuthenticateUserService {
       throw new AppError('Incorrect username/password combination.', 401);
     }
 
+    if (!user.isActive) {
+      throw new AppError('User not active');
+    }
+
     const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password,
