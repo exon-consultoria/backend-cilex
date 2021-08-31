@@ -10,6 +10,22 @@ class EntityRepository implements IEntityRepository {
     this.ormRepository = getRepository(GroupModule);
   }
 
+  public async findByGroupFormatted(id: string): Promise<GroupModule[]> {
+    const result = await this.ormRepository.query(`
+    SELECT
+      modules.title,
+      modules.url,
+      modules.description,
+      modules."classIcon" as moduleClassIcon
+    FROM
+      group_modules
+    INNER JOIN modules ON group_modules.module_id = modules.id
+    WHERE group_modules.group_id='${id}'
+    `);
+
+    return result;
+  }
+
   public async findRelation(
     group: string,
     module: string,

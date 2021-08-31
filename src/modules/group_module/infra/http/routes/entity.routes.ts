@@ -18,6 +18,8 @@ entityRouter.post(
 
 entityRouter.get('/', entityController.index);
 
+entityRouter.get('/groupModules', entityController.indexFormatted);
+
 entityRouter.get('/:id', entityController.show);
 
 entityRouter.delete('/:id', entityController.delete);

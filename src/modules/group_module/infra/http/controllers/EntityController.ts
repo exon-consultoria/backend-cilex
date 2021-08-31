@@ -5,6 +5,7 @@ import CreateEntityService from '@modules/group_module/services/CreateEntityServ
 import ListEntityService from '@modules/group_module/services/ListEntityService';
 import ShowEntityService from '@modules/group_module/services/ShowEntityService';
 import DeleteEntityService from '@modules/group_module/services/DeleteEntityService';
+import ListGroupModule from '@modules/group_module/services/ListGroupModule';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -29,6 +30,17 @@ export default class EntityController {
     const list = await listEntity.execute({
       group_id: group as string,
       module_id: module as string,
+    });
+
+    return res.json(classToClass(list));
+  }
+
+  public async indexFormatted(req: Request, res: Response): Promise<Response> {
+    const { group } = req.query;
+    const listEntity = container.resolve(ListGroupModule);
+
+    const list = await listEntity.execute({
+      group_id: group as string,
     });
 
     return res.json(classToClass(list));

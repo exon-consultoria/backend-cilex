@@ -5,6 +5,7 @@ export default interface IEntityRepository {
   findAll(): Promise<GroupModule[]>;
   findById(id: string): Promise<GroupModule | undefined>;
   findByGroup(id: string): Promise<GroupModule[]>;
+  findByGroupFormatted(id: string): Promise<GroupModule[]>;
   findByModule(id: string): Promise<GroupModule[]>;
   findRelation(group: string, module: string): Promise<GroupModule | undefined>;
   create(data: ICreateEntityDTO): Promise<GroupModule>;
