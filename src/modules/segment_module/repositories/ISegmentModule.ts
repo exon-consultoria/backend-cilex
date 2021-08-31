@@ -6,6 +6,7 @@ export default interface ISegmentModule {
   findById(id: string): Promise<SegmentModules | undefined>;
   findBySegment(id: string): Promise<SegmentModules[]>;
   findByModule(id: string): Promise<SegmentModules[]>;
+  findBySegmentFormatted(id: string): Promise<SegmentModules[]>;
   create(data: ICreateSegmentModule): Promise<SegmentModules>;
   update(entity: SegmentModules): Promise<SegmentModules>;
   delete(entity: SegmentModules): Promise<void>;

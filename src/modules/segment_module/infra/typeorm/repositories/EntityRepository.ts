@@ -10,6 +10,22 @@ class EntityRepository implements ISegmentModule {
     this.ormRepository = getRepository(SegmentModule);
   }
 
+  public async findBySegmentFormatted(id: string): Promise<SegmentModule[]> {
+    const result = await this.ormRepository.query(`
+    SELECT
+      modules.title,
+      modules."classIcon" as moduleClassIcon
+    FROM
+      segment_modules
+    INNER JOIN modules ON segment_modules.module_id = modules.id
+    INNER JOIN segments ON segment_modules.segment_id = segments.id
+    WHERE segment_modules.segment_id='${id}'
+
+    `);
+
+    return result;
+  }
+
   public async findAll(): Promise<SegmentModule[]> {
     const result = await this.ormRepository.find();
 
