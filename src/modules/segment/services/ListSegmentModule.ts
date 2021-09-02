@@ -4,7 +4,14 @@ import { inject, injectable } from 'tsyringe';
 import Segment from '../infra/typeorm/entities/Segment';
 import IEntityRepository from '../repositories/IEntityRepository';
 
-interface IRequest {}
+interface ISegmentsFormatted {
+  id?: string;
+  name?: string;
+  description?: string;
+  classIcon?: string;
+
+  modules?: [];
+}
 
 @injectable()
 export default class ListSegmentModule {
@@ -17,9 +24,11 @@ export default class ListSegmentModule {
   ) {}
 
   public async execute(): Promise<any> {
-    const result = await this.entityRepository.findAll();
+    let resultModules: {};
 
-    const resultModules = result.map(async seg => {
+    return this.entityRepository.findAll().then(async res => {
+      resultModules = await Promise.all(
+        res.map(async seg => {
           const modules = await this.segmentModuleRepository.findBySegmentFormatted(
             seg.id,
           );
@@ -28,21 +37,10 @@ export default class ListSegmentModule {
             ...seg,
             modules,
           };
+        }),
+      );
 
-    // const resultModules = new Promise((res, rej) => {
-    //   const i = result.map(async seg => {
-    //     const modules = await this.segmentModuleRepository.findBySegmentFormatted(
-    //       seg.id,
-    //     );
-
-    //     return {
-    //       ...seg,
-    //       modules,
-    //     };
-    //   });
-
-    // })
-
-    return resultModules;
+      return resultModules;
+    });
   }
 }
