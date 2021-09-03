@@ -11,4 +11,5 @@ export default interface ICreateCompanyDTO {
   info?: string;
   matriz_id?: string;
   isMatriz: boolean;
+  segment_id: string;
 }

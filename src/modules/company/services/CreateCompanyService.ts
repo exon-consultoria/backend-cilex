@@ -85,6 +85,7 @@ export default class CreateCompanyService {
       info,
       matriz_id,
       isMatriz,
+      segment_id: segment,
     });
 
     const segmentModules = await this.segmentModuleRepository.findBySegment(
