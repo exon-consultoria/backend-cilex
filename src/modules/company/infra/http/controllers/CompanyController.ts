@@ -41,7 +41,7 @@ export default class CompanyController {
       info,
       matriz_id,
       user: user.id,
-      segment: segment_id,
+      segment_id,
     });
 
     return res.json(company);

@@ -21,7 +21,7 @@ interface IRequestDTO {
   info?: string;
   matriz_id?: string;
   user: string;
-  segment: string;
+  segment_id: string;
 }
 
 @injectable()
@@ -56,7 +56,7 @@ export default class CreateCompanyService {
     info,
     matriz_id,
     user,
-    segment,
+    segment_id,
   }: IRequestDTO): Promise<Company> {
     const checkCodeExist = await this.companyRepository.findByCode(code);
 
@@ -72,6 +72,8 @@ export default class CreateCompanyService {
       isMatriz = false;
     }
 
+    console.log(segment_id);
+
     const result = await this.companyRepository.create({
       code,
       cnpj,
@@ -85,11 +87,11 @@ export default class CreateCompanyService {
       info,
       matriz_id,
       isMatriz,
-      segment_id: segment,
+      segment_id,
     });
 
     const segmentModules = await this.segmentModuleRepository.findBySegment(
-      segment,
+      segment_id,
     );
 
     segmentModules.forEach(async k => {
