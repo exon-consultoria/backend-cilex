@@ -17,10 +17,18 @@ import usersRouter from '@modules/user/infra/http/routes/users.routes';
 import productTypeRouter from '@modules/product_type/infra/http/routes/entity.routes';
 import productGroupRouter from '@modules/product_group/infra/http/routes/entity.routes';
 
+import productFamilyRouter from '@modules/product_family/infra/http/routes/entity.routes';
+import productApplicationRepository from '@modules/product_application/infra/http/routes/entity.routes';
+
+import prductDimensionRepository from '@modules/product_dimension/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/product_dimension', prductDimensionRepository);
+routes.use('/api/v1/product_application', productApplicationRepository);
+routes.use('/api/v1/product_family', productFamilyRouter);
 routes.use('/api/v1/product_group', productGroupRouter);
 routes.use('/api/v1/product_type', productTypeRouter);
 routes.use('/api/v1/group_modules', groupModuleRouter);

@@ -37,6 +37,30 @@ import IProductTypeRepository from '@modules/product_type/repositories/IEntityRe
 import ProductGroupRepository from '@modules/product_group/infra/typeorm/repositories/EntityRepository';
 import IProductGroupRepository from '@modules/product_group/repositories/IEntityRepository';
 
+import ProductFamilyRepository from '@modules/product_family/infra/typeorm/repositories/EntityRepository';
+import IProductFamilyRepository from '@modules/product_family/repositories/IEntityRepository';
+
+import ProductApplicationRepository from '@modules/product_application/infra/typeorm/repositories/EntityRepository';
+import IProductApplicationRepository from '@modules/product_application/repositories/IEntityRepository';
+
+import ProductDimensionRepository from '@modules/product_dimension/infra/typeorm/repositories/EntityRepository';
+import IProductDimensionRepository from '@modules/product_dimension/repositories/IEntityRepository';
+
+container.registerSingleton<IProductDimensionRepository>(
+  'ProductDimensionRepository',
+  ProductDimensionRepository,
+);
+
+container.registerSingleton<IProductApplicationRepository>(
+  'ProductApplicationRepository',
+  ProductApplicationRepository,
+);
+
+container.registerSingleton<IProductFamilyRepository>(
+  'ProductFamilyRepository',
+  ProductFamilyRepository,
+);
+
 container.registerSingleton<IProductGroupRepository>(
   'ProductGroupRepository',
   ProductGroupRepository,
