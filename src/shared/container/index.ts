@@ -31,6 +31,14 @@ import ICompanyModuleRepository from '@modules/company_module/repositories/IEnti
 import GroupModuleRepository from '@modules/group_module/infra/typeorm/repositories/EntityRepository';
 import IGroupModuleRepository from '@modules/group_module/repositories/IEntityRepository';
 
+import ProductTypeRepository from '@modules/product_type/infra/typeorm/repositories/EntityRepository';
+import IProductTypeRepository from '@modules/product_type/repositories/IEntityRepository';
+
+container.registerSingleton<IProductTypeRepository>(
+  'ProductTypeRepository',
+  ProductTypeRepository,
+);
+
 container.registerSingleton<IGroupModuleRepository>(
   'GroupModuleRepository',
   GroupModuleRepository,
