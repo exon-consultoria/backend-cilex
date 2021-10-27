@@ -10,7 +10,6 @@ entityRouter.post(
   celebrate({
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(4),
-      accept_structure: Joi.bool().required(),
       description: Joi.string().required(),
     },
   }),
@@ -22,7 +21,6 @@ entityRouter.put(
   celebrate({
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(4),
-      accept_structure: Joi.bool().required(),
       description: Joi.string().required(),
     },
   }),

@@ -1,15 +1,15 @@
 import { inject, injectable } from 'tsyringe';
-import ProductType from '../infra/typeorm/entities/ProductType';
+import ProductGroup from '../infra/typeorm/entities/ProductGroup';
 import IEntityRepository from '../repositories/IEntityRepository';
 
 @injectable()
 export default class ListEntityService {
   constructor(
-    @inject('ProductTypeRepository')
+    @inject('ProductGroupRepository')
     private entityRepository: IEntityRepository,
   ) {}
 
-  public async execute(): Promise<ProductType[]> {
+  public async execute(): Promise<ProductGroup[]> {
     const result = await this.entityRepository.findAll();
 
     return result;

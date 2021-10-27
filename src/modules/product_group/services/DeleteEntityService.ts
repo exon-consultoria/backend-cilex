@@ -5,7 +5,7 @@ import IEntityRepository from '../repositories/IEntityRepository';
 @injectable()
 export default class DeleteEntityService {
   constructor(
-    @inject('ProductTypeRepository')
+    @inject('ProductGroupRepository')
     private entityRepository: IEntityRepository,
   ) {}
 
@@ -13,7 +13,7 @@ export default class DeleteEntityService {
     const result = await this.entityRepository.findById(id);
 
     if (!result) {
-      throw new AppError("There's no type with given ID");
+      throw new AppError("There's no entity with given ID");
     }
 
     await this.entityRepository.delete(result);

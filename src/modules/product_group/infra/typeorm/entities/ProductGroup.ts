@@ -6,16 +6,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('product_type')
-class ProductType {
+@Entity('product_group')
+class ProductGroup {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('varchar')
   code: string;
-
-  @Column('boolean')
-  accept_structure: boolean;
 
   @Column('varchar')
   description: string;
@@ -27,4 +24,4 @@ class ProductType {
   updated_at: Date;
 }
 
-export default ProductType;
+export default ProductGroup;

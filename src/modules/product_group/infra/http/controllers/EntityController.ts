@@ -1,21 +1,20 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
-import CreateEntityService from '@modules/product_type/services/CreateEntityService';
-import ListEntityService from '@modules/product_type/services/ListEntityService';
-import ShowEntityService from '@modules/product_type/services/ShowEntityService';
-import UpdateEntityService from '@modules/product_type/services/UpdateEntityService';
-import DeleteEntityService from '@modules/product_type/services/DeleteEntityService';
+import CreateEntityService from '@modules/product_group/services/CreateEntityService';
+import ListEntityService from '@modules/product_group/services/ListEntityService';
+import ShowEntityService from '@modules/product_group/services/ShowEntityService';
+import UpdateEntityService from '@modules/product_group/services/UpdateEntityService';
+import DeleteEntityService from '@modules/product_group/services/DeleteEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { code, accept_structure, description } = req.body;
+    const { code, description } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       code,
-      accept_structure,
       description,
     });
 
@@ -41,7 +40,7 @@ export default class EntityController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { code, accept_structure, description } = req.body;
+    const { code, description } = req.body;
 
     const { id } = req.params;
 
@@ -50,7 +49,7 @@ export default class EntityController {
     const entity = await update.execute({
       id: id as string,
       code,
-      accept_structure,
+
       description,
     });
 

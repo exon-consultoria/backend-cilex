@@ -1,16 +1,16 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import ProductType from '../infra/typeorm/entities/ProductType';
+import ProductGroup from '../infra/typeorm/entities/ProductGroup';
 import IEntityRepository from '../repositories/IEntityRepository';
 
 @injectable()
 export default class ShowEntityService {
   constructor(
-    @inject('ProductTypeRepository')
+    @inject('ProductGroupRepository')
     private entityRepository: IEntityRepository,
   ) {}
 
-  public async execute(id: string): Promise<ProductType> {
+  public async execute(id: string): Promise<ProductGroup> {
     const result = await this.entityRepository.findById(id);
 
     if (!result) {

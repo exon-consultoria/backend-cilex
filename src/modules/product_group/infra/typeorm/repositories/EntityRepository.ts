@@ -1,28 +1,28 @@
-import ICreateEntityDTO from '@modules/product_type/dtos/ICreateEntityDTO';
-import IEntityRepository from '@modules/product_type/repositories/IEntityRepository';
+import ICreateEntityDTO from '@modules/product_group/dtos/ICreateEntityDTO';
+import IEntityRepository from '@modules/product_group/repositories/IEntityRepository';
 import { getRepository, Repository } from 'typeorm';
-import ProductType from '../entities/ProductType';
+import ProductGroup from '../entities/ProductGroup';
 
 class EntityRepository implements IEntityRepository {
-  private ormRepository: Repository<ProductType>;
+  private ormRepository: Repository<ProductGroup>;
 
   constructor() {
-    this.ormRepository = getRepository(ProductType);
+    this.ormRepository = getRepository(ProductGroup);
   }
 
-  public async findAll(): Promise<ProductType[]> {
+  public async findAll(): Promise<ProductGroup[]> {
     const result = await this.ormRepository.find();
 
     return result;
   }
 
-  public async findById(id: string): Promise<ProductType | undefined> {
+  public async findById(id: string): Promise<ProductGroup | undefined> {
     const result = await this.ormRepository.findOne(id);
 
     return result;
   }
 
-  public async findByCode(code: string): Promise<ProductType | undefined> {
+  public async findByCode(code: string): Promise<ProductGroup | undefined> {
     const result = await this.ormRepository.findOne({ where: { code } });
 
     return result;
@@ -30,11 +30,9 @@ class EntityRepository implements IEntityRepository {
 
   public async create({
     code,
-    accept_structure,
     description,
-  }: ICreateEntityDTO): Promise<ProductType> {
+  }: ICreateEntityDTO): Promise<ProductGroup> {
     const result = this.ormRepository.create({
-      accept_structure,
       code,
       description,
     });
@@ -44,11 +42,11 @@ class EntityRepository implements IEntityRepository {
     return result;
   }
 
-  public async update(entity: ProductType): Promise<ProductType> {
+  public async update(entity: ProductGroup): Promise<ProductGroup> {
     return this.ormRepository.save(entity);
   }
 
-  public async delete(entity: ProductType): Promise<void> {
+  public async delete(entity: ProductGroup): Promise<void> {
     await this.ormRepository.remove(entity);
   }
 }
