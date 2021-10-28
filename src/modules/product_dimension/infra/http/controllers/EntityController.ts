@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
-import CreateEntityService from '@modules/product_application/services/CreateEntityService';
-import ListEntityService from '@modules/product_application/services/ListEntityService';
-import ShowEntityService from '@modules/product_application/services/ShowEntityService';
-import UpdateEntityService from '@modules/product_application/services/UpdateEntityService';
-import DeleteEntityService from '@modules/product_application/services/DeleteEntityService';
+import CreateEntityService from '@modules/product_dimension/services/CreateEntityService';
+import ListEntityService from '@modules/product_dimension/services/ListEntityService';
+import ShowEntityService from '@modules/product_dimension/services/ShowEntityService';
+import UpdateEntityService from '@modules/product_dimension/services/UpdateEntityService';
+import DeleteEntityService from '@modules/product_dimension/services/DeleteEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
