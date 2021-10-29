@@ -1,21 +1,22 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
-import CreateEntityService from '@modules/product_group/services/CreateEntityService';
-import ListEntityService from '@modules/product_group/services/ListEntityService';
-import ShowEntityService from '@modules/product_group/services/ShowEntityService';
-import UpdateEntityService from '@modules/product_group/services/UpdateEntityService';
-import DeleteEntityService from '@modules/product_group/services/DeleteEntityService';
+import CreateEntityService from '@modules/product_subgroup/services/CreateEntityService';
+import ListEntityService from '@modules/product_subgroup/services/ListEntityService';
+import ShowEntityService from '@modules/product_subgroup/services/ShowEntityService';
+import UpdateEntityService from '@modules/product_subgroup/services/UpdateEntityService';
+import DeleteEntityService from '@modules/product_subgroup/services/DeleteEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, product_group_id, description } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       code,
       description,
+      product_group_id,
     });
 
     return res.json(entity);
@@ -40,7 +41,7 @@ export default class EntityController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, description, product_group_id } = req.body;
 
     const { id } = req.params;
 
@@ -49,6 +50,7 @@ export default class EntityController {
     const entity = await update.execute({
       id: id as string,
       code,
+      product_group_id,
 
       description,
     });
