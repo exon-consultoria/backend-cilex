@@ -9,7 +9,7 @@ entityRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(6),
       accept_structure: Joi.bool().required(),
       description: Joi.string().required(),
     },
@@ -21,7 +21,7 @@ entityRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(6),
       accept_structure: Joi.bool().required(),
       description: Joi.string().required(),
     },
