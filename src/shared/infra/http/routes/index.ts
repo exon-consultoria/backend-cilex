@@ -24,10 +24,13 @@ import productDimensionRepository from '@modules/product_dimension/infra/http/ro
 
 import productSubGroupRepository from '@modules/product_subgroup/infra/http/routes/entity.routes';
 
+import productSubFamilyRepository from '@modules/product_subfamily/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/product_subfamily', productSubFamilyRepository);
 routes.use('/api/v1/product_subgroup', productSubGroupRepository);
 routes.use('/api/v1/product_dimension', productDimensionRepository);
 routes.use('/api/v1/product_application', productApplicationRepository);
