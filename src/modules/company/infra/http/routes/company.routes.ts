@@ -13,7 +13,7 @@ companyRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(6),
       cnpj: Joi.string().required().min(14).max(18),
       razao_social: Joi.string().required(),
       nome_fantasia: Joi.string().required(),
@@ -34,7 +34,7 @@ companyRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(4),
+      code: Joi.string().required().min(4).max(6),
       cnpj: Joi.string().required().min(14).max(18),
       razao_social: Joi.string().required(),
       nome_fantasia: Joi.string(),
