@@ -11,7 +11,7 @@ entityRouter.post(
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(6),
       description: Joi.string().required(),
-      product_group_id: Joi.string().required,
+      product_group_id: Joi.string().required(),
     },
   }),
   entityController.create,
