@@ -46,6 +46,14 @@ import IProductApplicationRepository from '@modules/product_application/reposito
 import ProductDimensionRepository from '@modules/product_dimension/infra/typeorm/repositories/EntityRepository';
 import IProductDimensionRepository from '@modules/product_dimension/repositories/IEntityRepository';
 
+import ProductSubGroupRepository from '@modules/product_subgroup/infra/typeorm/repositories/EntityRepository';
+import IProductSubGroupRepository from '@modules/product_subgroup/repositories/IEntityRepository';
+
+container.registerSingleton<IProductSubGroupRepository>(
+  'ProductSubGroupRepository',
+  ProductSubGroupRepository,
+);
+
 container.registerSingleton<IProductDimensionRepository>(
   'ProductDimensionRepository',
   ProductDimensionRepository,

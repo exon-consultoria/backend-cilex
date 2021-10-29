@@ -22,10 +22,13 @@ import productApplicationRepository from '@modules/product_application/infra/htt
 
 import productDimensionRepository from '@modules/product_dimension/infra/http/routes/entity.routes';
 
+import productSubGroupRepository from '@modules/product_subgroup/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/product_subgroup', productSubGroupRepository);
 routes.use('/api/v1/product_dimension', productDimensionRepository);
 routes.use('/api/v1/product_application', productApplicationRepository);
 routes.use('/api/v1/product_family', productFamilyRouter);
