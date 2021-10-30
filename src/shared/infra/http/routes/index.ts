@@ -26,10 +26,13 @@ import productSubGroupRepository from '@modules/product_subgroup/infra/http/rout
 
 import productSubFamilyRepository from '@modules/product_subfamily/infra/http/routes/entity.routes';
 
+import ProductUMRepository from '@modules/product_um/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/product_um', ProductUMRepository);
 routes.use('/api/v1/product_subfamily', productSubFamilyRepository);
 routes.use('/api/v1/product_subgroup', productSubGroupRepository);
 routes.use('/api/v1/product_dimension', productDimensionRepository);

@@ -52,6 +52,14 @@ import IProductSubGroupRepository from '@modules/product_subgroup/repositories/I
 import ProductSubFamilyRepository from '@modules/product_subfamily/infra/typeorm/repositories/EntityRepository';
 import IProductSubFamilyRepository from '@modules/product_subfamily/repositories/IEntityRepository';
 
+import ProductUMRepository from '@modules/product_um/infra/typeorm/repositories/EntityRepository';
+import IProductUMRepository from '@modules/product_um/repositories/IEntityRepository';
+
+container.registerSingleton<IProductUMRepository>(
+  'ProductUMRepository',
+  ProductUMRepository,
+);
+
 container.registerSingleton<IProductSubFamilyRepository>(
   'ProductSubFamilyRepository',
   ProductSubFamilyRepository,
