@@ -30,10 +30,13 @@ import ProductUMRepository from '@modules/product_um/infra/http/routes/entity.ro
 
 import ProductRepository from '@modules/product/infra/http/routes/entity.routes';
 
+import StorageRepository from '@modules/storage/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/storage', StorageRepository);
 routes.use('/api/v1/product', ProductRepository);
 routes.use('/api/v1/product_um', ProductUMRepository);
 routes.use('/api/v1/product_subfamily', productSubFamilyRepository);
