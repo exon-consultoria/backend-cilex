@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import deleteFile from 'utils/file';
 import Product from '../infra/typeorm/entities/Product';
 
 import IEntityRepository from '../repositories/IEntityRepository';
@@ -48,6 +49,8 @@ export default class CreateEntityService {
       const checkCodeExist = await this.entityRepository.findByCode(code);
 
       if (checkCodeExist) {
+        await deleteFile(`./tmp/products/${picture}`);
+        await deleteFile(`./tmp/products/${technical_picture}`);
         throw new AppError(
           "There's already an entity registered with the same code",
         );

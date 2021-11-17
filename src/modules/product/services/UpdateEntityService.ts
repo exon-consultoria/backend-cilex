@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import deleteFile from '../../../utils/file';
 import IEntityRepository from '../repositories/IEntityRepository';
 import Product from '../infra/typeorm/entities/Product';
 
@@ -48,6 +49,8 @@ export default class UpdateEntityService {
   }: IRequestDTO): Promise<Product> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
+      await deleteFile(`./tmp/products/${picture}`);
+      await deleteFile(`./tmp/products/${technical_picture}`);
       throw new AppError("There's no entity with given ID");
     }
 
@@ -55,10 +58,19 @@ export default class UpdateEntityService {
       const checkCodExist = await this.entityRepository.findByCode(code);
 
       if (checkCodExist) {
+        await deleteFile(`./tmp/products/${picture}`);
+        await deleteFile(`./tmp/products/${technical_picture}`);
         throw new AppError(
           "There's already an entity registered with the same code",
         );
       }
+    }
+    if (entity.picture) {
+      await deleteFile(`./tmp/products/${entity.picture}`);
+    }
+
+    if (entity.technical_picture) {
+      await deleteFile(`./tmp/products/${entity.technical_picture}`);
     }
 
     entity.code = code || entity.code;

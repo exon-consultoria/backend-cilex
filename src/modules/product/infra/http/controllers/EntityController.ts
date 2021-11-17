@@ -18,13 +18,14 @@ export default class EntityController {
       group_id,
       subfamily_id,
       subgroup_id,
-      picture,
-      technical_picture,
       technical_description,
       type_id,
       umc_id,
       umu_id,
     } = req.body;
+
+    const picture = req.files.picture[0].filename;
+    const technical_picture = req.files.technical_picture[0].filename;
 
     const createEntity = container.resolve(CreateEntityService);
 
@@ -76,8 +77,6 @@ export default class EntityController {
       group_id,
       subfamily_id,
       subgroup_id,
-      picture,
-      technical_picture,
       technical_description,
       type_id,
       umc_id,
@@ -87,6 +86,9 @@ export default class EntityController {
     const { id } = req.params;
 
     const update = container.resolve(UpdateEntityService);
+
+    const picture = req.files.picture[0].filename;
+    const technical_picture = req.files.technical_picture[0].filename;
 
     const entity = await update.execute({
       id: id as string,
