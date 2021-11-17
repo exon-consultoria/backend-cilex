@@ -22,6 +22,7 @@ export default class EntityController {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     } = req.body;
 
     const picture = req.files.picture[0].filename;
@@ -44,6 +45,7 @@ export default class EntityController {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     });
 
     return res.json(entity);
@@ -81,6 +83,7 @@ export default class EntityController {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     } = req.body;
 
     const { id } = req.params;
@@ -106,6 +109,7 @@ export default class EntityController {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     });
 
     return res.json(entity);

@@ -6,6 +6,7 @@ import ProductSubFamily from '@modules/product_subfamily/infra/typeorm/entities/
 import ProductSubGroup from '@modules/product_subgroup/infra/typeorm/entities/ProductSubGroup';
 import ProductType from '@modules/product_type/infra/typeorm/entities/ProductType';
 import ProductUM from '@modules/product_um/infra/typeorm/entities/ProductUM';
+import Storage from '@modules/storage/infra/typeorm/entities/Storage';
 import {
   Entity,
   Column,
@@ -42,6 +43,13 @@ class Product {
   @ManyToOne(() => ProductGroup)
   @JoinColumn({ name: 'group_id' })
   group: ProductGroup;
+
+  @Column()
+  standard_storage: string;
+
+  @ManyToOne(() => Storage)
+  @JoinColumn({ name: 'standard_storage' })
+  storage: Storage;
 
   @Column()
   type_id: string;

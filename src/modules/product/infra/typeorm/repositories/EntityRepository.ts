@@ -43,6 +43,7 @@ class EntityRepository implements IEntityRepository {
     type_id,
     umc_id,
     umu_id,
+    standard_storage,
   }: ICreateEntityDTO): Promise<Product> {
     const result = this.ormRepository.create({
       code,
@@ -59,6 +60,7 @@ class EntityRepository implements IEntityRepository {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     });
 
     await this.ormRepository.save(result);

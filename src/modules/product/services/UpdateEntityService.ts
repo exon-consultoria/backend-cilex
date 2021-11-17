@@ -21,6 +21,7 @@ interface IRequestDTO {
   type_id?: string;
   umc_id?: string;
   umu_id?: string;
+  standard_storage?: string;
 }
 
 @injectable()
@@ -46,6 +47,7 @@ export default class UpdateEntityService {
     type_id,
     umc_id,
     umu_id,
+    standard_storage,
   }: IRequestDTO): Promise<Product> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
@@ -88,6 +90,7 @@ export default class UpdateEntityService {
     entity.type_id = type_id || entity.type_id;
     entity.umc_id = umc_id || entity.umc_id;
     entity.umu_id = umu_id || entity.umu_id;
+    entity.standard_storage = standard_storage || entity.standard_storage;
 
     return this.entityRepository.update(entity);
   }

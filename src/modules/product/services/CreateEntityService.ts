@@ -20,6 +20,7 @@ interface IRequestDTO {
   type_id: string;
   umc_id: string;
   umu_id: string;
+  standard_storage: string;
 }
 
 @injectable()
@@ -44,6 +45,7 @@ export default class CreateEntityService {
     type_id,
     umc_id,
     umu_id,
+    standard_storage,
   }: IRequestDTO): Promise<Product> {
     if (code) {
       const checkCodeExist = await this.entityRepository.findByCode(code);
@@ -72,6 +74,7 @@ export default class CreateEntityService {
       type_id,
       umc_id,
       umu_id,
+      standard_storage,
     });
 
     return result;

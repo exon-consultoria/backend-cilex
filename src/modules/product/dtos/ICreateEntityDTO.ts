@@ -13,4 +13,5 @@ export default interface ICreateEntityDTO {
   umc_id: string;
   application_id: string;
   dimensions_id: string;
+  standard_storage: string;
 }
