@@ -8,6 +8,8 @@ import AppError from '@shared/errors/AppError';
 import 'express-async-errors';
 
 import createConnection from '@shared/infra/typeorm';
+import uploadConfig from '../../../config/upload';
+
 import routes from './routes';
 
 import '@shared/container';
@@ -17,8 +19,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-// app.use('/files', express.static(uploadConfig.uploadsFolder));
+
 app.use(routes);
+app.use('/api/v1/files', express.static(uploadConfig.tmpFolder));
 
 app.use(errors());
 

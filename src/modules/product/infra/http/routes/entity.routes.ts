@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { celebrate, Segments, Joi } from 'celebrate';
+// import { celebrate, Segments, Joi } from 'celebrate';
 import multer from 'multer';
 import uploadConfig from '../../../../../config/upload';
 import EntityController from '../controllers/EntityController';
@@ -7,7 +7,7 @@ import EntityController from '../controllers/EntityController';
 const entityRouter = Router();
 const entityController = new EntityController();
 
-const uploadAvatar = multer(uploadConfig.upload('./tmp/products'));
+const uploadAvatar = multer(uploadConfig.multer);
 
 entityRouter.post(
   '/',
