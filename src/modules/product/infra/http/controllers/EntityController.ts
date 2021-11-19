@@ -94,9 +94,13 @@ export default class EntityController {
     const { id } = req.params;
 
     const update = container.resolve(UpdateEntityService);
+    try {
+      const picture = req.files.picture[0].filename;
+    } catch (e) {}
 
-    const picture = req.files.picture[0].filename;
-    const technical_picture = req.files.technical_picture[0].filename;
+    try {
+      const technical_picture = req.files.technical_picture[0].filename;
+    } catch (e) {}
 
     const entity = await update.execute({
       id: id as string,
