@@ -25,8 +25,13 @@ export default class EntityController {
       standard_storage,
     } = req.body;
 
-    const picture = req.files.picture[0].filename;
-    const technical_picture = req.files.technical_picture[0].filename;
+    try {
+      const picture = req.files.picture[0].filename;
+    } catch (e) {}
+
+    try {
+      const technical_picture = req.files.technical_picture[0].filename;
+    } catch (e) {}
 
     const createEntity = container.resolve(CreateEntityService);
 
