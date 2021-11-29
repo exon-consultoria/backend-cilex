@@ -43,8 +43,10 @@ export default class CreateEntityService {
     type,
     user_id,
   }: IRequestDTO): Promise<Transaction> {
-    if (origin_id === destination_id) {
-      throw new AppError('Origin same as destination');
+    if (type === 'transfer') {
+      if (origin_id === destination_id) {
+        throw new AppError('Origin same as destination');
+      }
     }
 
     const checkProductID = await this.productRepository.findById(product_id);
