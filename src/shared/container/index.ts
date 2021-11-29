@@ -61,6 +61,14 @@ import IProductRepository from '@modules/product/repositories/IEntityRepository'
 import StorageRepository from '@modules/storage/infra/typeorm/repositories/EntityRepository';
 import IStorageRepository from '@modules/storage/repositories/IEntityRepository';
 
+import TransactionRepository from '@modules/transaction/infra/typeorm/repositories/EntityRepository';
+import ITransactionRepository from '@modules/transaction/repositories/IEntityRepository';
+
+container.registerSingleton<ITransactionRepository>(
+  'TransactionRepository',
+  TransactionRepository,
+);
+
 container.registerSingleton<IStorageRepository>(
   'StorageRepository',
   StorageRepository,

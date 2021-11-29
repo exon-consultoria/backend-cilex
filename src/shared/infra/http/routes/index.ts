@@ -32,10 +32,13 @@ import ProductRepository from '@modules/product/infra/http/routes/entity.routes'
 
 import StorageRepository from '@modules/storage/infra/http/routes/entity.routes';
 
+import TransactionRepository from '@modules/transaction/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/transaction', TransactionRepository);
 routes.use('/api/v1/storage', StorageRepository);
 routes.use('/api/v1/product', ProductRepository);
 routes.use('/api/v1/product_um', ProductUMRepository);
