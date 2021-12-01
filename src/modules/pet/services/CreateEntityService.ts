@@ -41,6 +41,8 @@ export default class CreateEntityService {
     owner_id,
     note,
   }: IRequestDTO): Promise<Pet> {
+
+    
     const result = await this.entityRepository.create({
       name,
       picture,

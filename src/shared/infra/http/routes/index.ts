@@ -34,10 +34,13 @@ import StorageRepository from '@modules/storage/infra/http/routes/entity.routes'
 
 import TransactionRepository from '@modules/transaction/infra/http/routes/entity.routes';
 
+import VaccineRepository from '@modules/vaccine/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/vaccine', VaccineRepository);
 routes.use('/api/v1/transaction', TransactionRepository);
 routes.use('/api/v1/storage', StorageRepository);
 routes.use('/api/v1/product', ProductRepository);

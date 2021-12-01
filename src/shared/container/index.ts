@@ -64,6 +64,14 @@ import IStorageRepository from '@modules/storage/repositories/IEntityRepository'
 import TransactionRepository from '@modules/transaction/infra/typeorm/repositories/EntityRepository';
 import ITransactionRepository from '@modules/transaction/repositories/IEntityRepository';
 
+import VaccineRepository from '@modules/vaccine/infra/typeorm/repositories/EntityRepository';
+import IVaccineRepository from '@modules/vaccine/repositories/IEntityRepository';
+
+container.registerSingleton<IVaccineRepository>(
+  'VaccineRepository',
+  VaccineRepository,
+);
+
 container.registerSingleton<ITransactionRepository>(
   'TransactionRepository',
   TransactionRepository,

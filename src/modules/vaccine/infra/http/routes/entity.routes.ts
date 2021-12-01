@@ -1,23 +1,29 @@
 import { Router } from 'express';
-// import { celebrate, Segments, Joi } from 'celebrate';
-import multer from 'multer';
-import uploadConfig from '../../../../../config/upload';
+import { celebrate, Segments, Joi } from 'celebrate';
 import EntityController from '../controllers/EntityController';
 
 const entityRouter = Router();
 const entityController = new EntityController();
 
-const uploadAvatar = multer(uploadConfig.multer);
-
 entityRouter.post(
   '/',
-  uploadAvatar.fields([{ name: 'picture', maxCount: 1 }]),
+  celebrate({
+    [Segments.BODY]: {
+      code: Joi.string().required().min(4).max(6),
+      description: Joi.string().required(),
+    },
+  }),
   entityController.create,
 );
 
 entityRouter.put(
   '/:id',
-  uploadAvatar.fields([{ name: 'picture', maxCount: 1 }]),
+  celebrate({
+    [Segments.BODY]: {
+      code: Joi.string().required().min(4).max(6),
+      description: Joi.string().required(),
+    },
+  }),
   entityController.update,
 );
 

@@ -48,6 +48,10 @@ export default class UpdateEntityService {
       throw new AppError("There's no entity with given ID");
     }
 
+    if (entity.picture) {
+      await deleteFile(`./tmp/pets/${entity.picture}`);
+    }
+
     entity.name = name || entity.name;
     entity.picture = picture || entity.picture;
     entity.breed = breed || entity.breed;
@@ -57,7 +61,7 @@ export default class UpdateEntityService {
     entity.castrated = castrated || entity.castrated;
     entity.items = items || entity.items;
     // entity.localization = localization || entity.localization;
-    // entity.vaccines = vaccines || entity.vaccines;
+    entity.vaccines = vaccines || entity.vaccines;
     entity.owner_id = owner_id || entity.owner_id;
     entity.note = note || entity.note;
 
