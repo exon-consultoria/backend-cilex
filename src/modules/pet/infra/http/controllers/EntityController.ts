@@ -6,6 +6,7 @@ import ListEntityService from '@modules/pet/services/ListEntityService';
 import ShowEntityService from '@modules/pet/services/ShowEntityService';
 import UpdateEntityService from '@modules/pet/services/UpdateEntityService';
 import DeleteEntityService from '@modules/pet/services/DeleteEntityService';
+import UpdatePictureEntityService from '@modules/pet/services/UpdatePictureEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -17,29 +18,24 @@ export default class EntityController {
       sociable,
       castrated,
       items,
-      localization,
-      vaccines,
+      enclosure_id,
       owner_id,
+      vaccines,
       note,
     } = req.body;
-
-    try {
-      const picture = req.files.picture[0].filename;
-    } catch (e) {}
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       name,
-      picture,
+      vaccines,
       breed,
       born_at,
       gender,
       sociable,
       castrated,
       items,
-      localization,
-      vaccines,
+      enclosure_id,
       owner_id,
       note,
     });
@@ -68,14 +64,13 @@ export default class EntityController {
   public async update(req: Request, res: Response): Promise<Response> {
     const {
       name,
-      picture,
       breed,
       born_at,
       gender,
       sociable,
       castrated,
       items,
-      localization,
+      enclosure_id,
       vaccines,
       owner_id,
       note,
@@ -85,24 +80,34 @@ export default class EntityController {
 
     const update = container.resolve(UpdateEntityService);
 
-    try {
-      const picture = req.files.picture[0].filename;
-    } catch (e) {}
-
     const entity = await update.execute({
       id: id as string,
       name,
-      picture,
       breed,
       born_at,
       gender,
       sociable,
       castrated,
       items,
-      localization,
+      enclosure_id,
       vaccines,
       owner_id,
       note,
+    });
+
+    return res.json(entity);
+  }
+
+  public async patch(req: Request, res: Response): Promise<Response> {
+    const picture = req.file.filename;
+
+    const { id } = req.params;
+
+    const update = container.resolve(UpdatePictureEntityService);
+
+    const entity = await update.execute({
+      id: id as string,
+      picture,
     });
 
     return res.json(entity);

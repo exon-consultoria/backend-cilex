@@ -30,24 +30,22 @@ class EntityRepository implements IEntityRepository {
 
   public async create({
     name,
-    picture,
     breed,
     born_at,
     gender,
     sociable,
     castrated,
     items,
-    localization,
-    vaccines,
+    enclosure_id,
     owner_id,
     note,
   }: ICreateEntityDTO): Promise<Pet> {
     const result = this.ormRepository.create({
       name,
-      picture,
       breed,
       born_at,
       gender,
+      enclosure_id,
       items,
       owner_id,
       note,

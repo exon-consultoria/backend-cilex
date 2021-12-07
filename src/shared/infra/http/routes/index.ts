@@ -36,10 +36,16 @@ import TransactionRepository from '@modules/transaction/infra/http/routes/entity
 
 import VaccineRepository from '@modules/vaccine/infra/http/routes/entity.routes';
 
+import EnclosureRepository from '@modules/enclosure/infra/http/routes/entity.routes';
+
+import PetRepository from '@modules/pet/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/pet', PetRepository);
+routes.use('/api/v1/enclosure', EnclosureRepository);
 routes.use('/api/v1/vaccine', VaccineRepository);
 routes.use('/api/v1/transaction', TransactionRepository);
 routes.use('/api/v1/storage', StorageRepository);

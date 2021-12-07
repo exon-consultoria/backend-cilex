@@ -67,6 +67,27 @@ import ITransactionRepository from '@modules/transaction/repositories/IEntityRep
 import VaccineRepository from '@modules/vaccine/infra/typeorm/repositories/EntityRepository';
 import IVaccineRepository from '@modules/vaccine/repositories/IEntityRepository';
 
+import EnclosureRepository from '@modules/enclosure/infra/typeorm/repositories/EntityRepository';
+import IEnclosureRepository from '@modules/enclosure/repositories/IEntityRepository';
+
+import PetRepository from '@modules/pet/infra/typeorm/repositories/EntityRepository';
+import IPetRepository from '@modules/pet/repositories/IEntityRepository';
+
+import PetVaccineRepository from '@modules/pet_vaccine/infra/typeorm/repositories/EntityRepository';
+import IPetVaccineRepository from '@modules/pet_vaccine/repositories/IEntityRepository';
+
+container.registerSingleton<IPetVaccineRepository>(
+  'PetVaccineRepository',
+  PetVaccineRepository,
+);
+
+container.registerSingleton<IPetRepository>('PetRepository', PetRepository);
+
+container.registerSingleton<IEnclosureRepository>(
+  'EnclosureRepository',
+  EnclosureRepository,
+);
+
 container.registerSingleton<IVaccineRepository>(
   'VaccineRepository',
   VaccineRepository,

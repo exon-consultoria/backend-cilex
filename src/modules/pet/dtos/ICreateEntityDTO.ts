@@ -1,14 +1,12 @@
 export default interface ICreateEntityDTO {
   name: string;
-  picture: string;
-  breed: string;
-  born_at: string;
-  gender: string;
-  sociable: boolean;
-  castrated: boolean;
-  items: string;
-  localization: string;
-  vaccines: string;
+  breed?: string;
+  born_at?: string;
+  gender?: string;
+  sociable?: boolean;
+  castrated?: boolean;
+  items?: string;
+  enclosure_id?: string;
   owner_id: string;
-  note: string;
+  note?: string;
 }

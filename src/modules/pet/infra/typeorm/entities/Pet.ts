@@ -1,3 +1,4 @@
+import Enclosure from '@modules/enclosure/infra/typeorm/entities/Enclosure';
 import Person from '@modules/person/infra/typeorm/entities/Person';
 import {
   Entity,
@@ -37,6 +38,13 @@ class Pet {
 
   @Column()
   items: string;
+
+  @Column()
+  enclosure_id: string;
+
+  @ManyToOne(() => Enclosure)
+  @JoinColumn({ name: 'enclosure_id' })
+  enclosure: Enclosure;
 
   @Column()
   owner_id: string;
