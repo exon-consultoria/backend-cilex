@@ -76,6 +76,11 @@ import IPetRepository from '@modules/pet/repositories/IEntityRepository';
 import PetVaccineRepository from '@modules/pet_vaccine/infra/typeorm/repositories/EntityRepository';
 import IPetVaccineRepository from '@modules/pet_vaccine/repositories/IEntityRepository';
 
+import WorkRepository from '@modules/work/infra/typeorm/repositories/EntityRepository';
+import IWorkRepository from '@modules/work/repositories/IEntityRepository';
+
+container.registerSingleton<IWorkRepository>('WorkRepository', WorkRepository);
+
 container.registerSingleton<IPetVaccineRepository>(
   'PetVaccineRepository',
   PetVaccineRepository,

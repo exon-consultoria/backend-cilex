@@ -40,10 +40,13 @@ import EnclosureRepository from '@modules/enclosure/infra/http/routes/entity.rou
 
 import PetRepository from '@modules/pet/infra/http/routes/entity.routes';
 
+import WorkRepository from '@modules/work/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/work', WorkRepository);
 routes.use('/api/v1/pet', PetRepository);
 routes.use('/api/v1/enclosure', EnclosureRepository);
 routes.use('/api/v1/vaccine', VaccineRepository);
