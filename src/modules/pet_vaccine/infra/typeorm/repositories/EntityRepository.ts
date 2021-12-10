@@ -49,13 +49,13 @@ class EntityRepository implements IEntityRepository {
   }
 
   public async findByPet(id: string): Promise<PetVaccine[]> {
-    const result = await this.ormRepository.find({ where: { pet: id } });
+    const result = await this.ormRepository.find({ where: { pet_id: id } });
 
     return result;
   }
 
   public async findByVaccine(id: string): Promise<PetVaccine[]> {
-    const result = await this.ormRepository.find({ where: { vaccine: id } });
+    const result = await this.ormRepository.find({ where: { vaccine_id: id } });
 
     return result;
   }

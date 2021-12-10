@@ -9,16 +9,14 @@ entityRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      module_id: Joi.string().uuid(),
-      group_id: Joi.string().uuid(),
+      pet_id: Joi.string().uuid(),
+      vaccine_id: Joi.string().uuid(),
     },
   }),
   entityController.create,
 );
 
 entityRouter.get('/', entityController.index);
-
-entityRouter.get('/groupModules', entityController.indexFormatted);
 
 entityRouter.get('/:id', entityController.show);
 

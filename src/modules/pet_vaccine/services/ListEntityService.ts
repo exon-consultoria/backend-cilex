@@ -20,6 +20,8 @@ export default class ListEntityService {
   }: IRequest): Promise<PetVaccine[]> {
     let result = await this.petVaccineRepository.findAll();
 
+    console.log(pet_id);
+
     if (pet_id) {
       result = await this.petVaccineRepository.findByPet(pet_id);
     }

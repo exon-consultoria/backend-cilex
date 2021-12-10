@@ -1,46 +1,32 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
-import CreateEntityService from '@modules/group_module/services/CreateEntityService';
-import ListEntityService from '@modules/group_module/services/ListEntityService';
-import ShowEntityService from '@modules/group_module/services/ShowEntityService';
-import DeleteEntityService from '@modules/group_module/services/DeleteEntityService';
-import ListGroupModule from '@modules/group_module/services/ListGroupModule';
+import CreateEntityService from '@modules/pet_vaccine/services/CreateEntityService';
+import ListEntityService from '@modules/pet_vaccine/services/ListEntityService';
+import ShowEntityService from '@modules/pet_vaccine/services/ShowEntityService';
+import DeleteEntityService from '@modules/pet_vaccine/services/DeleteEntityService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { group_id, module_id } = req.body;
+    const { pet_id, vaccine_id } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
-      group_id,
-      module_id,
+      pet_id,
+      vaccine_id,
     });
 
     return res.json(entity);
   }
 
   public async index(req: Request, res: Response): Promise<Response> {
-    const { group, module } = req.query;
+    const { pet, vaccine } = req.query;
     const listEntity = container.resolve(ListEntityService);
 
-    console.log(group, module);
-
     const list = await listEntity.execute({
-      group_id: group as string,
-      module_id: module as string,
-    });
-
-    return res.json(classToClass(list));
-  }
-
-  public async indexFormatted(req: Request, res: Response): Promise<Response> {
-    const { group } = req.query;
-    const listEntity = container.resolve(ListGroupModule);
-
-    const list = await listEntity.execute({
-      group_id: group as string,
+      pet_id: pet as string,
+      vaccine_id: vaccine as string,
     });
 
     return res.json(classToClass(list));
