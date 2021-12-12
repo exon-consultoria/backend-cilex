@@ -12,8 +12,8 @@ interface IRequestDTO {
   breed?: string;
   born_at?: string;
   gender?: string;
-  sociable?: boolean;
-  castrated?: boolean;
+  sociable: boolean;
+  castrated: boolean;
   items?: string;
   vaccines?: string[];
   enclosure_id?: string;
@@ -87,12 +87,18 @@ export default class UpdateEntityService {
       });
     }
 
+    if (sociable !== entity.sociable) {
+      entity.sociable = sociable;
+    }
+
+    if (castrated !== entity.castrated) {
+      entity.castrated = castrated;
+    }
+
     entity.name = name || entity.name;
     entity.breed = breed || entity.breed;
     entity.born_at = born_at || entity.born_at;
     entity.gender = gender || entity.gender;
-    entity.sociable = sociable || entity.sociable;
-    entity.castrated = castrated || entity.castrated;
     entity.items = items || entity.items;
     entity.enclosure_id = enclosure_id || entity.enclosure_id;
     entity.owner_id = owner_id || entity.owner_id;

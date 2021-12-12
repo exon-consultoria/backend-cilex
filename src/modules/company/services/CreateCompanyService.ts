@@ -72,8 +72,6 @@ export default class CreateCompanyService {
       isMatriz = false;
     }
 
-    console.log(segment_id);
-
     const result = await this.companyRepository.create({
       code,
       cnpj,
