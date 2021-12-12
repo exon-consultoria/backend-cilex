@@ -44,10 +44,13 @@ import WorkRepository from '@modules/work/infra/http/routes/entity.routes';
 
 import PetVaccineRepository from '@modules/pet_vaccine/infra/http/routes/entity.routes';
 
+import AppointmentsRepository from '@modules/appointment/infra/http/routes/entity.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/appointments', AppointmentsRepository);
 routes.use('/api/v1/pet_vaccine', PetVaccineRepository);
 routes.use('/api/v1/work', WorkRepository);
 routes.use('/api/v1/pet', PetRepository);
