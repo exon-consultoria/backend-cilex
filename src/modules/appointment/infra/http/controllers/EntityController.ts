@@ -9,12 +9,13 @@ import DeleteEntityService from '@modules/appointment/services/DeleteEntityServi
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { date, pet_id, work_id, recurrence, done } = req.body;
+    const { date, hour, pet_id, work_id, recurrence, done } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       date,
+      hour,
       pet_id,
       work_id,
       recurrence,
@@ -45,7 +46,7 @@ export default class EntityController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { date, pet_id, work_id, recurrence, done } = req.body;
+    const { date, hour, pet_id, work_id, recurrence, done } = req.body;
 
     const { id } = req.params;
 
@@ -54,6 +55,7 @@ export default class EntityController {
     const entity = await update.execute({
       id: id as string,
       date,
+      hour,
       pet_id,
       work_id,
       recurrence,

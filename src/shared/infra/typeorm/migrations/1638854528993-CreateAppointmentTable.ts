@@ -41,6 +41,11 @@ export default class CreateAppointmentTable1638854528993
             isNullable: true,
           },
           {
+            name: 'hour',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'pet_id',
             type: 'uuid',
             isNullable: true,

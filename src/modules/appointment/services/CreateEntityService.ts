@@ -9,6 +9,7 @@ import IEntityRepository from '../repositories/IEntityRepository';
 interface IRequestDTO {
   recurrence: string;
   date: string;
+  hour: string;
   pet_id: string;
   work_id: string;
   done: boolean;
@@ -29,6 +30,7 @@ export default class CreateEntityService {
 
   public async execute({
     date,
+    hour,
     pet_id,
     work_id,
     recurrence,
@@ -47,6 +49,7 @@ export default class CreateEntityService {
 
     const result = await this.entityRepository.create({
       date,
+      hour,
       pet_id,
       work_id,
       owner_id: checkPet.owner_id,

@@ -10,6 +10,7 @@ interface IRequestDTO {
   id: string;
   recurrence?: string;
   date?: string;
+  hour?: string;
   pet_id?: string;
   work_id?: string;
   done?: boolean;
@@ -32,6 +33,7 @@ export default class UpdateEntityService {
     id,
     recurrence,
     date,
+    hour,
     pet_id,
     work_id,
     done,
@@ -43,6 +45,7 @@ export default class UpdateEntityService {
 
     entity.recurrence = recurrence || entity.recurrence;
     entity.date = date || entity.date;
+    entity.hour = hour || entity.hour;
     entity.pet_id = pet_id || entity.pet_id;
     entity.work_id = work_id || entity.work_id;
     entity.done = done || entity.done;

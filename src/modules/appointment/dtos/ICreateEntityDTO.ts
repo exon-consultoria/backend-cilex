@@ -4,5 +4,6 @@ export default interface ICreateEntityDTO {
   work_id: string;
   pet_id: string;
   date: string;
+  hour: string;
   done: boolean;
 }

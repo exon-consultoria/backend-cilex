@@ -22,6 +22,9 @@ class Appointment {
   @Column('date')
   date: string;
 
+  @Column()
+  hour: string;
+
   @Column('boolean')
   done: boolean;
 

@@ -10,6 +10,7 @@ entityRouter.post(
   celebrate({
     [Segments.BODY]: {
       date: Joi.string().required(),
+      hour: Joi.string().required(),
       recurrence: Joi.string().allow(''),
       work_id: Joi.string().required(),
       pet_id: Joi.string().required(),
@@ -24,6 +25,8 @@ entityRouter.put(
   celebrate({
     [Segments.BODY]: {
       date: Joi.string().allow(''),
+      hour: Joi.string().allow(''),
+
       recurrence: Joi.string().allow(''),
       work_id: Joi.string().allow(),
       pet_id: Joi.string().allow(),
