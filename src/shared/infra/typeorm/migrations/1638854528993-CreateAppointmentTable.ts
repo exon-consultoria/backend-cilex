@@ -37,7 +37,7 @@ export default class CreateAppointmentTable1638854528993
           },
           {
             name: 'date',
-            type: 'timestamp',
+            type: 'varchar',
             isNullable: true,
           },
           {
