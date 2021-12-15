@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import deleteFile from '../../../utils/file';
+import deleteFile from '@utils/file';
 import IEntityRepository from '../repositories/IEntityRepository';
 import Product from '../infra/typeorm/entities/Product';
 
