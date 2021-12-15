@@ -47,6 +47,8 @@ export default class CreateEntityService {
       throw new AppError('No work with this ID');
     }
 
+    console.log(hour);
+
     const result = await this.entityRepository.create({
       date,
       hour,

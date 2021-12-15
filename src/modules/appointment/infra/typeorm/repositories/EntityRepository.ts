@@ -41,6 +41,7 @@ class EntityRepository implements IEntityRepository {
 
   public async create({
     date,
+    hour,
     pet_id,
     work_id,
     recurrence,
@@ -49,6 +50,7 @@ class EntityRepository implements IEntityRepository {
   }: ICreateEntityDTO): Promise<Appointment> {
     const result = this.ormRepository.create({
       date,
+      hour,
       pet_id,
       work_id,
       owner_id,
