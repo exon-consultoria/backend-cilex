@@ -13,7 +13,7 @@ interface IRequestDTO {
   hour?: string;
   pet_id?: string;
   work_id?: string;
-  done?: boolean;
+  done: boolean;
 }
 
 @injectable()
@@ -43,12 +43,15 @@ export default class UpdateEntityService {
       throw new AppError("There's no entity with given ID");
     }
 
+    if (done !== entity.done) {
+      entity.done = done;
+    }
+
     entity.recurrence = recurrence || entity.recurrence;
     entity.date = date || entity.date;
     entity.hour = hour || entity.hour;
     entity.pet_id = pet_id || entity.pet_id;
     entity.work_id = work_id || entity.work_id;
-    entity.done = done || entity.done;
 
     return this.entityRepository.update(entity);
   }
