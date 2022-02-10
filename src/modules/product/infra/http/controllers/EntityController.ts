@@ -6,8 +6,26 @@ import ListEntityService from '@modules/product/services/ListEntityService';
 import ShowEntityService from '@modules/product/services/ShowEntityService';
 import UpdateEntityService from '@modules/product/services/UpdateEntityService';
 import DeleteEntityService from '@modules/product/services/DeleteEntityService';
+import CalculateInventoryService from '@modules/product/services/CalculateInventoryService';
 
 export default class EntityController {
+  public async calculateInventory(
+    req: Request,
+    res: Response,
+  ): Promise<Response> {
+    const { storage_id, startDate, endDate } = req.body;
+
+    const calculateInventory = container.resolve(CalculateInventoryService);
+
+    const resume = await calculateInventory.execute(
+      storage_id,
+      startDate,
+      endDate,
+    );
+
+    return res.json(classToClass(resume));
+  }
+
   public async create(req: Request, res: Response): Promise<Response> {
     const {
       code,
