@@ -9,3 +9,4 @@ tmp/*
 ormconfig.json
 coverage
 !tmp/.gitkeep
+package-lock.json

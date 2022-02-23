@@ -7,14 +7,14 @@ import { errors } from 'celebrate';
 import AppError from '@shared/errors/AppError';
 import 'express-async-errors';
 
-import createConnection from '@shared/infra/typeorm';
+import  '@shared/infra/typeorm';
 import uploadConfig from '../../../config/upload';
 
 import routes from './routes';
 
 import '@shared/container';
 
-createConnection();
+
 const app = express();
 
 app.use(cors());
