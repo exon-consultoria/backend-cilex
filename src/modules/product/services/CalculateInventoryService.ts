@@ -30,8 +30,8 @@ export default class CalculateInventoryService {
         {
           storage_id,
           product_id: _prod.id,
-          startDate: '2021-11-26 17:48:10.902454', // How receive date on this format and test transfer transaction
-          endDate: '2022-02-01 02:20:03.046029',
+          startDate: startDate.toDateString(), // How receive date on this format and test transfer transaction
+          endDate: endDate.toDateString(),
         },
       );
 
@@ -60,6 +60,8 @@ export default class CalculateInventoryService {
       });
 
       resume.push({
+        id: _prod.id,
+        code: _prod.code,
         description: _prod.description,
         quantity,
       });
