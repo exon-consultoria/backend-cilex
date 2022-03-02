@@ -41,6 +41,12 @@ class Company {
   @Column('varchar')
   uf: string;
 
+  @Column('varchar')
+  company_logo: string;
+
+  @Column('varchar')
+  company_color: string;
+
   @Column('boolean')
   isMatriz: boolean;
 

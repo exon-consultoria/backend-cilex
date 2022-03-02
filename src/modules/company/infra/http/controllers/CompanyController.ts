@@ -6,6 +6,7 @@ import ListCompanyService from '@modules/company/services/ListCompanyService';
 import ShowCompanyService from '@modules/company/services/ShowCompanyService';
 import UpdateCompanyService from '@modules/company/services/UpdateCompanyService';
 import DeleteCompanyService from '@modules/company/services/DeleteCompanyService';
+import UpdateLogoService from '@modules/company/services/UpdateLogoService';
 
 export default class CompanyController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -83,6 +84,7 @@ export default class CompanyController {
       uf,
       info,
       matriz_id,
+      company_color,
     } = req.body;
 
     const { id } = req.params;
@@ -102,6 +104,7 @@ export default class CompanyController {
       uf,
       info,
       matriz_id,
+      company_color,
     });
 
     return res.json(company);
@@ -115,5 +118,20 @@ export default class CompanyController {
     const result = await deleteService.execute(id as string);
 
     return res.json(classToClass(result));
+  }
+
+  public async patch(req: Request, res: Response): Promise<Response> {
+    const company_logo = req.file.filename;
+    
+    const { id } = req.params;
+
+    const update = container.resolve(UpdateLogoService);
+
+    const entity = await update.execute({
+      id: id as string,
+      company_logo: company_logo,
+    });
+
+    return res.json(entity);
   }
 }

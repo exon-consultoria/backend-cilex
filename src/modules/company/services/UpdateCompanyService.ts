@@ -18,6 +18,7 @@ interface IRequestDTO {
   uf?: string;
   info?: string;
   matriz_id?: string;
+  company_color?: string; 
 }
 
 @injectable()
@@ -40,6 +41,7 @@ export default class UpdateCompanyService {
     info,
     matriz_id,
     uf,
+    company_color,
   }: IRequestDTO): Promise<Company> {
     const company = await this.companyRepository.findById(company_id);
     if (!company) {
@@ -78,6 +80,7 @@ export default class UpdateCompanyService {
     company.matriz_id = matriz_id || company.matriz_id;
     company.uf = uf || company.uf;
     company.isMatriz = isMatriz;
+    company.company_color = company_color || company.company_color;
 
     return this.companyRepository.update(company);
   }
