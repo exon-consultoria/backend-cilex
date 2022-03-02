@@ -75,12 +75,15 @@ export default class UpdateEntityService {
 
     entity.name = name || entity.name;
     entity.email = email || entity.email;
-
-    const group = await this.groupRepository.findById(group_id);
-    if (!group) {
-      throw new AppError('No group_id found with given ID');
+    
+    if (group_id) {
+      const group = await this.groupRepository.findById(group_id);
+      if (!group) {
+        throw new AppError('No group_id found with given ID');
+      }
+      entity.group = group;  
     }
-    entity.group = group;
+
 
     return this.usersRepository.save(entity);
   }
