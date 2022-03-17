@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@modules/user/infra/http/middlewares/ensureAuthenticated';
 import ensureAdmin from '@modules/user/infra/http/middlewares/ensureAdmin';
-import CompanyController from '../controllers/CompanyController';
 import multer from 'multer';
+import CompanyController from '../controllers/CompanyController';
 import uploadConfig from '../../../../../config/upload';
 
 const companyRouter = Router();
@@ -60,6 +60,8 @@ companyRouter.patch(
   uploadAvatar.single('company_logo'),
   companyController.patch,
 );
+
+companyRouter.patch('/:id/updateColor', companyController.patchColor);
 companyRouter.get('/', companyController.index);
 
 companyRouter.get('/:id', companyController.show);

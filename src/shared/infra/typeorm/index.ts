@@ -1,11 +1,9 @@
 import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 import { AuroraDataApiConnectionOptions } from 'typeorm/driver/aurora-data-api/AuroraDataApiConnectionOptions';
 
-interface IOptions extends AuroraDataApiConnectionOptions  {
+interface IOptions extends AuroraDataApiConnectionOptions {
   host: string;
 }
-
-
 
 getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
@@ -15,8 +13,7 @@ getConnectionOptions().then(options => {
   });
 });
 
-
-// export default async (): Promise<Connection> => { 
+// export default async (): Promise<Connection> => {
 //   const defaultOptions = await getConnectionOptions() as IOptions;
 //   defaultOptions.host = 'database_cilex'
 //   return createConnection({...defaultOptions,})
