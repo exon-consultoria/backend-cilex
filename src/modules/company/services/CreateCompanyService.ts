@@ -86,6 +86,8 @@ export default class CreateCompanyService {
       matriz_id,
       isMatriz,
       segment_id,
+      company_logo: 'cilex.png',
+      company_color: '#FF7A00',
     });
 
     const segmentModules = await this.segmentModuleRepository.findBySegment(

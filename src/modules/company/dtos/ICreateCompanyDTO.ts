@@ -12,4 +12,6 @@ export default interface ICreateCompanyDTO {
   matriz_id?: string;
   isMatriz: boolean;
   segment_id: string;
+  company_logo: string;
+  company_color: string;
 }

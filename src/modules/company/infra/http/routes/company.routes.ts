@@ -63,6 +63,7 @@ companyRouter.patch(
 
 companyRouter.patch('/:id/updateColor', companyController.patchColor);
 companyRouter.get('/', companyController.index);
+companyRouter.get('/:id/reset', companyController.reset);
 
 companyRouter.get('/:id', companyController.show);
 

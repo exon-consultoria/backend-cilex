@@ -54,6 +54,8 @@ class CompanyRepository implements ICompanyRepository {
     matriz_id,
     isMatriz,
     segment_id,
+    company_color,
+    company_logo,
   }: ICreateCompanyDTO): Promise<Company> {
     const result = this.ormRepository.create({
       cnpj,
@@ -67,6 +69,8 @@ class CompanyRepository implements ICompanyRepository {
       uf,
       tel,
       info,
+      company_color,
+      company_logo,
       isMatriz,
       segment_id,
     });

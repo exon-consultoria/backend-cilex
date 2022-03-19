@@ -7,17 +7,16 @@ import Company from '../infra/typeorm/entities/Company';
 
 interface IRequestDTO {
   id: string;
-  company_logo?: string;
 }
 
 @injectable()
-export default class UpdateLogoService {
+export default class ResetCompany {
   constructor(
     @inject('CompanyRepository')
     private entityRepository: ICompanyRepository,
   ) {}
 
-  public async execute({ id, company_logo }: IRequestDTO): Promise<Company> {
+  public async execute({ id }: IRequestDTO): Promise<Company> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
       throw new AppError("There's no entity with given ID");
@@ -27,7 +26,8 @@ export default class UpdateLogoService {
       await deleteFile(`./tmp/${entity.company_logo}`);
     }
 
-    entity.company_logo = company_logo || entity.company_logo;
+    entity.company_logo = 'cilex.png';
+    entity.company_color = '#FF7A00';
 
     return this.entityRepository.update(entity);
   }

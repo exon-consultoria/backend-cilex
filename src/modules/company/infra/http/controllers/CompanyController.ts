@@ -8,6 +8,7 @@ import UpdateCompanyService from '@modules/company/services/UpdateCompanyService
 import DeleteCompanyService from '@modules/company/services/DeleteCompanyService';
 import UpdateLogoService from '@modules/company/services/UpdateLogoService';
 import UpdateColorService from '@modules/company/services/UpdateColorService';
+import ResetCompany from '@modules/company/services/ResetCompany';
 
 export default class CompanyController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -60,6 +61,16 @@ export default class CompanyController {
     );
 
     return res.json(classToClass(list));
+  }
+
+  public async reset(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const listService = container.resolve(ResetCompany);
+
+    const company = await listService.execute({ id });
+
+    return res.json(classToClass(company));
   }
 
   public async show(req: Request, res: Response): Promise<Response> {
