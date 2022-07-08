@@ -63,6 +63,30 @@ class EntityRepository implements IEntityRepository {
     return result;
   }
 
+  public async createMany(
+    appointments: ICreateEntityDTO[],
+  ): Promise<Appointment[]> {
+    const allResults: Appointment[] = [];
+
+    await Promise.all(
+      appointments.map(async appointment => {
+        const result = this.ormRepository.create({
+          date: appointment.date,
+          hour: appointment.hour,
+          pet_id: appointment.pet_id,
+          work_id: appointment.work_id,
+          owner_id: appointment.owner_id,
+          recurrence: appointment.recurrence,
+          done: appointment.done,
+        });
+        await this.ormRepository.save(result);
+        allResults.push(result);
+      }),
+    );
+
+    return allResults;
+  }
+
   public async update(entity: Appointment): Promise<Appointment> {
     return this.ormRepository.save(entity);
   }

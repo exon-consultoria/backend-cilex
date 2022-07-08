@@ -20,6 +20,8 @@ entityRouter.post(
   entityController.create,
 );
 
+entityRouter.post('/many', entityController.createMany);
+
 entityRouter.put(
   '/:id',
   celebrate({

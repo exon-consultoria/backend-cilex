@@ -7,6 +7,7 @@ export default interface IEntityRepository {
   findByDate(date: string): Promise<Appointment[]>;
   findByCode(code: string): Promise<Appointment | undefined>;
   create(data: ICreateEntityDTO): Promise<Appointment>;
+  createMany(data: ICreateEntityDTO[]): Promise<Appointment[]>;
   update(entity: Appointment): Promise<Appointment>;
   delete(entity: Appointment): Promise<void>;
 }

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 import CreateEntityService from '@modules/appointment/services/CreateEntityService';
+import CreateManyEntityService from '@modules/appointment/services/CreateManyEntityService';
 import ListEntityService from '@modules/appointment/services/ListEntityService';
 import ShowEntityService from '@modules/appointment/services/ShowEntityService';
 import UpdateEntityService from '@modules/appointment/services/UpdateEntityService';
@@ -21,6 +22,16 @@ export default class EntityController {
       recurrence,
       done,
     });
+
+    return res.json(entity);
+  }
+
+  public async createMany(req: Request, res: Response): Promise<Response> {
+    const appointments = req.body;
+
+    const createManyEntity = container.resolve(CreateManyEntityService);
+
+    const entity = await createManyEntity.execute(appointments);
 
     return res.json(entity);
   }
