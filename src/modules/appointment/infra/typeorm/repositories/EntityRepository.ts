@@ -66,25 +66,11 @@ class EntityRepository implements IEntityRepository {
   public async createMany(
     appointments: ICreateEntityDTO[],
   ): Promise<Appointment[]> {
-    const allResults: Appointment[] = [];
+    const result = this.ormRepository.create(appointments);
 
-    await Promise.all(
-      appointments.map(async appointment => {
-        const result = this.ormRepository.create({
-          date: appointment.date,
-          hour: appointment.hour,
-          pet_id: appointment.pet_id,
-          work_id: appointment.work_id,
-          owner_id: appointment.owner_id,
-          recurrence: appointment.recurrence,
-          done: appointment.done,
-        });
-        await this.ormRepository.save(result);
-        allResults.push(result);
-      }),
-    );
+    await this.ormRepository.save(result);
 
-    return allResults;
+    return result;
   }
 
   public async update(entity: Appointment): Promise<Appointment> {
@@ -93,6 +79,26 @@ class EntityRepository implements IEntityRepository {
 
   public async delete(entity: Appointment): Promise<void> {
     await this.ormRepository.remove(entity);
+  }
+
+  public async deleteByIds(ids: string): Promise<void> {
+    const allIds = ids.split(',');
+    this.ormRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Appointment)
+      .where('id In (:...ids)', { ids: allIds })
+      .execute();
+  }
+
+  public async deleteByDate(date: string): Promise<void> {
+    const formatDate = date.replace('-', '/');
+    await this.ormRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Appointment)
+      .where('date > :date_param', { date_param: formatDate })
+      .execute();
   }
 }
 

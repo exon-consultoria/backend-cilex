@@ -10,4 +10,6 @@ export default interface IEntityRepository {
   createMany(data: ICreateEntityDTO[]): Promise<Appointment[]>;
   update(entity: Appointment): Promise<Appointment>;
   delete(entity: Appointment): Promise<void>;
+  deleteByIds(ids: string): Promise<void>;
+  deleteByDate(date: string): Promise<void>;
 }

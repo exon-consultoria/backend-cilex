@@ -7,7 +7,7 @@ import Appointment from '../infra/typeorm/entities/Appointment';
 import IEntityRepository from '../repositories/IEntityRepository';
 
 interface IRequestDTO {
-  recurrence: string;
+  recurrence: boolean;
   date: string;
   hour: string;
   pet_id: string;
@@ -46,8 +46,6 @@ export default class CreateEntityService {
     if (!checkWork) {
       throw new AppError('No work with this ID');
     }
-
-    console.log(hour);
 
     const result = await this.entityRepository.create({
       date,

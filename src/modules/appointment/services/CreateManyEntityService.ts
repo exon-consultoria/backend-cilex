@@ -2,13 +2,14 @@ import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import IPetRepository from '@modules/pet/repositories/IEntityRepository';
 import IWorkRepository from '@modules/work/repositories/IEntityRepository';
+import { v4 as uuid } from 'uuid';
 import Appointment from '../infra/typeorm/entities/Appointment';
 
 import IEntityRepository from '../repositories/IEntityRepository';
 
 interface IRequestDTO {
   owner_id: string;
-  recurrence?: string;
+  recurrence?: boolean;
   work_id: string;
   pet_id: string;
   date: string;
@@ -48,7 +49,20 @@ export default class CreateEntityService {
       }),
     );
 
-    const result = await this.entityRepository.createMany(appointments);
+    const recurrence_uuid = uuid();
+
+    const formattedAppointment = appointments.map(appointment => ({
+      date: appointment.date,
+      hour: appointment.hour,
+      pet_id: appointment.pet_id,
+      work_id: appointment.work_id,
+      owner_id: appointment.owner_id,
+      recurrence: appointment.recurrence,
+      recurrence_id: recurrence_uuid,
+      done: appointment.done,
+    }));
+
+    const result = await this.entityRepository.createMany(formattedAppointment);
 
     return result;
   }

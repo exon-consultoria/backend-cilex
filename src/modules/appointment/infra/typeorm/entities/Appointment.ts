@@ -16,8 +16,11 @@ class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
-  recurrence: string;
+  @Column('uuid')
+  recurrence_id: string;
+
+  @Column('boolean')
+  recurrence: boolean;
 
   @Column('date')
   date: string;

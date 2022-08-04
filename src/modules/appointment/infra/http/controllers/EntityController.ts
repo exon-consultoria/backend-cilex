@@ -7,6 +7,8 @@ import ListEntityService from '@modules/appointment/services/ListEntityService';
 import ShowEntityService from '@modules/appointment/services/ShowEntityService';
 import UpdateEntityService from '@modules/appointment/services/UpdateEntityService';
 import DeleteEntityService from '@modules/appointment/services/DeleteEntityService';
+import DeleteByIdsService from '@modules/appointment/services/DeleteByIdsService';
+import DeleteByDateService from '@modules/appointment/services/DeleteByDateService';
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -82,6 +84,26 @@ export default class EntityController {
     const deleteService = container.resolve(DeleteEntityService);
 
     const result = await deleteService.execute(id as string);
+
+    return res.json(classToClass(result));
+  }
+
+  public async deleteByIds(req: Request, res: Response): Promise<Response> {
+    const { ids } = req.params;
+
+    const deleteByIdsService = container.resolve(DeleteByIdsService);
+
+    const result = await deleteByIdsService.execute(ids);
+
+    return res.json(classToClass(result));
+  }
+
+  public async deleteByDate(req: Request, res: Response): Promise<Response> {
+    const { date } = req.params;
+
+    const deleteByDateService = container.resolve(DeleteByDateService);
+
+    const result = await deleteByDateService.execute(date as string);
 
     return res.json(classToClass(result));
   }
