@@ -42,7 +42,7 @@ entityRouter.put(
       cep: Joi.string().allow(''),
       uf: Joi.string().allow(''),
       info: Joi.string().allow(''),
-      code: Joi.string().min(4).max(4),
+      code: Joi.string().min(4).max(6),
       cpf: Joi.string().min(11).max(11),
       nome: Joi.string(),
       isUser: Joi.boolean().default(false),
