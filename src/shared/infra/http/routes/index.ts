@@ -46,10 +46,16 @@ import PetVaccineRepository from '@modules/pet_vaccine/infra/http/routes/entity.
 
 import AppointmentsRepository from '@modules/appointment/infra/http/routes/entity.routes';
 
+import IncomeRepository from '@modules/income/infra/http/routes/income.routes';
+
+import EntryRepository from '@modules/entry/infra/http/routes/entry.routes';
+
 import { Router } from 'express';
 
 const routes = Router();
 
+routes.use('/api/v1/income', IncomeRepository);
+routes.use('/api/v1/entry', EntryRepository);
 routes.use('/api/v1/appointments', AppointmentsRepository);
 routes.use('/api/v1/pet_vaccine', PetVaccineRepository);
 routes.use('/api/v1/work', WorkRepository);
