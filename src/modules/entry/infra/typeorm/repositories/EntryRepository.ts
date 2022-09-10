@@ -1,4 +1,4 @@
-import ICreateEntryEntityDTO from '@modules/entry/dtos/ICreateEntryEntityDTO';
+import { ICreateEntryEntityDTO } from '@modules/entry/dtos/IEntryEntityDTO';
 import IEntryRepository from '@modules/entry/repositories/IEntryRepository';
 import { getRepository, Repository } from 'typeorm';
 import Entry from '../entities/Entry';
@@ -26,7 +26,6 @@ class IncomeRepository implements IEntryRepository {
     date_income,
     type,
     financial_entity,
-    chart_of_accounts,
     description,
     value,
     date_to_pay,
@@ -41,7 +40,6 @@ class IncomeRepository implements IEntryRepository {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,

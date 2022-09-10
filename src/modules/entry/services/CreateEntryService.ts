@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import ICreateEntryEntityDTO from '../dtos/ICreateEntryEntityDTO';
+import { ICreateEntryEntityDTO } from '../dtos/IEntryEntityDTO';
 import Entry from '../infra/typeorm/entities/Entry';
 import IEntryRepository from '../repositories/IEntryRepository';
 
@@ -14,7 +14,6 @@ export default class CreateEntryService {
     date_income,
     type,
     financial_entity,
-    chart_of_accounts,
     description,
     value,
     date_to_pay,
@@ -29,7 +28,6 @@ export default class CreateEntryService {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,
@@ -40,8 +38,6 @@ export default class CreateEntryService {
       cash_flow,
       income_id,
     });
-
-    console.log(income_id, result, 'servuce');
 
     return result;
   }

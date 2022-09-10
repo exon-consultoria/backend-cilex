@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import ICreateIncomeEntityDTO from '../dtos/ICreateIncomeEntityDTO';
+import { ICreateIncomeEntityDTO } from '../dtos/IIncomeEntityDTO';
 import Income from '../infra/typeorm/entities/Income';
 import IIncomeRepository from '../repositories/IIncomeRepository';
 

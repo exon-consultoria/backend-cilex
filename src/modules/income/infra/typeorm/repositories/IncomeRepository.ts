@@ -1,4 +1,4 @@
-import ICreateIncomeEntityDTO from '@modules/income/dtos/ICreateIncomeEntityDTO';
+import { ICreateIncomeEntityDTO } from '@modules/income/dtos/IIncomeEntityDTO';
 import IIncomeRepository from '@modules/income/repositories/IIncomeRepository';
 import { getRepository, Repository } from 'typeorm';
 import Income from '../entities/Income';

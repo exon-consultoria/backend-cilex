@@ -14,7 +14,6 @@ export default class EntryController {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,
@@ -32,7 +31,6 @@ export default class EntryController {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,
@@ -70,7 +68,6 @@ export default class EntryController {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,
@@ -79,6 +76,7 @@ export default class EntryController {
       title_status,
       payed_status,
       cash_flow,
+      income_id,
     } = req.body;
 
     const { id } = req.params;
@@ -90,7 +88,6 @@ export default class EntryController {
       date_income,
       type,
       financial_entity,
-      chart_of_accounts,
       description,
       value,
       date_to_pay,
@@ -99,6 +96,7 @@ export default class EntryController {
       title_status,
       payed_status,
       cash_flow,
+      income_id,
     });
 
     return res.json(updatedEntry);

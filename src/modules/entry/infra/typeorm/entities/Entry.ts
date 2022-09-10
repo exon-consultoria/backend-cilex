@@ -5,8 +5,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity('entry')
@@ -22,9 +22,6 @@ class Entry {
 
   @Column('varchar')
   financial_entity: string;
-
-  @Column('varchar')
-  chart_of_accounts: string;
 
   @Column('varchar')
   description: string;
@@ -50,7 +47,10 @@ class Entry {
   @Column('decimal')
   cash_flow: number;
 
-  @OneToOne(() => Income, { eager: true })
+  @Column({ nullable: true })
+  income_id: string;
+
+  @ManyToOne(() => Income)
   @JoinColumn({ name: 'income_id' })
   income: Income;
 

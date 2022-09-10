@@ -1,4 +1,4 @@
-import ICreateEntryEntityDTO from '../dtos/ICreateEntryEntityDTO';
+import { ICreateEntryEntityDTO } from '../dtos/IEntryEntityDTO';
 import Entry from '../infra/typeorm/entities/Entry';
 
 export default interface IEntryRepository {

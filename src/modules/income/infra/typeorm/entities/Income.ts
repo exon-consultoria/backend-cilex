@@ -1,11 +1,9 @@
-import Entry from '@modules/entry/infra/typeorm/entities/Entry';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
 } from 'typeorm';
 
 @Entity('income')
@@ -21,9 +19,6 @@ class Income {
 
   @Column('varchar')
   type: string;
-
-  @OneToOne(() => Entry, () => Income)
-  entry: Entry;
 
   @CreateDateColumn()
   created_at: Date;

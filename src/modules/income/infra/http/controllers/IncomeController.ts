@@ -42,41 +42,18 @@ export default class IncomeController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const {
-      date_income,
-      type,
-      financial_entity,
-      chart_of_accounts,
-      description,
-      value,
-      date_to_pay,
-      value_payed,
-      date_payed,
-      title_status,
-      payed_status,
-      cash_flow,
-    } = req.body;
+    const { code, account, type } = req.body;
 
     const { id } = req.params;
 
     const update = container.resolve(UpdateIncomeService);
 
     const income = await update.execute({
-      id,
-      date_income,
+      id: id as string,
+      code,
+      account,
       type,
-      financial_entity,
-      chart_of_accounts,
-      description,
-      value,
-      date_to_pay,
-      value_payed,
-      date_payed,
-      title_status,
-      payed_status,
-      cash_flow,
     });
-
     return res.json(income);
   }
 
