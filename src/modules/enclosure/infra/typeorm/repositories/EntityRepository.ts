@@ -31,10 +31,14 @@ class EntityRepository implements IEntityRepository {
   public async create({
     code,
     description,
+    size,
+    enclosure_size_id,
   }: ICreateEntityDTO): Promise<Enclosure> {
     const result = this.ormRepository.create({
       code,
       description,
+      size,
+      enclosure_size_id,
     });
 
     await this.ormRepository.save(result);

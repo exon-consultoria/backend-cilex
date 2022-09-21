@@ -8,12 +8,10 @@ const entityController = new EntityController();
 entityRouter.post(
   '/',
   celebrate({
-    [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(6),
-      description: Joi.string().required(),
-      enclosure_size_id: Joi.string(),
-      size: Joi.string().max(1),
-    },
+    [Segments.BODY]: Joi.array().items({
+      size: Joi.string().required().max(1),
+      capacity: Joi.number().required(),
+    }),
   }),
   entityController.create,
 );
@@ -22,10 +20,8 @@ entityRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      code: Joi.string().required().min(4).max(6),
-      description: Joi.string().required(),
-      enclosure_size_id: Joi.string(),
-      size: Joi.string().max(1),
+      size: Joi.string().required().max(1),
+      capacity: Joi.number().required(),
     },
   }),
   entityController.update,

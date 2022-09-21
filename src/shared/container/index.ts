@@ -70,6 +70,9 @@ import IVaccineRepository from '@modules/vaccine/repositories/IEntityRepository'
 import EnclosureRepository from '@modules/enclosure/infra/typeorm/repositories/EntityRepository';
 import IEnclosureRepository from '@modules/enclosure/repositories/IEntityRepository';
 
+import EnclosureSizeRepository from '@modules/enclosure_size/infra/typeorm/repositories/EntityRepository';
+import IEnclosureSizeRepository from '@modules/enclosure_size/repositories/IEntityRepository';
+
 import PetRepository from '@modules/pet/infra/typeorm/repositories/EntityRepository';
 import IPetRepository from '@modules/pet/repositories/IEntityRepository';
 
@@ -99,6 +102,11 @@ container.registerSingleton<IPetRepository>('PetRepository', PetRepository);
 container.registerSingleton<IEnclosureRepository>(
   'EnclosureRepository',
   EnclosureRepository,
+);
+
+container.registerSingleton<IEnclosureSizeRepository>(
+  'EnclosureSizeRepository',
+  EnclosureSizeRepository,
 );
 
 container.registerSingleton<IVaccineRepository>(
