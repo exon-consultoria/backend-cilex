@@ -38,8 +38,6 @@ import VaccineRepository from '@modules/vaccine/infra/http/routes/entity.routes'
 
 import EnclosureRepository from '@modules/enclosure/infra/http/routes/entity.routes';
 
-import EnclosureSizeRepository from '@modules/enclosure_size/infra/http/routes/entity.routes';
-
 import PetRepository from '@modules/pet/infra/http/routes/entity.routes';
 
 import WorkRepository from '@modules/work/infra/http/routes/entity.routes';
@@ -57,7 +55,6 @@ routes.use('/api/v1/pet_vaccine', PetVaccineRepository);
 routes.use('/api/v1/work', WorkRepository);
 routes.use('/api/v1/pet', PetRepository);
 routes.use('/api/v1/enclosure', EnclosureRepository);
-routes.use('/api/v1/enclosure_size', EnclosureSizeRepository);
 routes.use('/api/v1/vaccine', VaccineRepository);
 routes.use('/api/v1/transaction', TransactionRepository);
 routes.use('/api/v1/storage', StorageRepository);

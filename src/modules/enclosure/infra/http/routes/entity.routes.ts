@@ -11,7 +11,7 @@ entityRouter.post(
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(6),
       description: Joi.string().required(),
-      enclosure_size_id: Joi.string(),
+      enclosure_size: Joi.array().required(),
       size: Joi.string().max(1),
     },
   }),
@@ -24,7 +24,7 @@ entityRouter.put(
     [Segments.BODY]: {
       code: Joi.string().required().min(4).max(6),
       description: Joi.string().required(),
-      enclosure_size_id: Joi.string(),
+      enclosure_size: Joi.array().required(),
       size: Joi.string().max(1),
     },
   }),

@@ -22,6 +22,7 @@ export default class EntityController {
       owner_id,
       vaccines,
       note,
+      dog_size,
     } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
@@ -38,6 +39,7 @@ export default class EntityController {
       enclosure_id,
       owner_id,
       note,
+      dog_size,
     });
 
     return res.json(entity);
@@ -74,6 +76,7 @@ export default class EntityController {
       vaccines,
       owner_id,
       note,
+      dog_size,
     } = req.body;
 
     const { id } = req.params;
@@ -93,6 +96,7 @@ export default class EntityController {
       vaccines,
       owner_id,
       note,
+      dog_size,
     });
 
     return res.json(entity);

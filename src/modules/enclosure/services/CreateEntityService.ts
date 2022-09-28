@@ -8,7 +8,7 @@ interface IRequestDTO {
   code: string;
   description: string;
   size: string;
-  enclosure_size_id: string;
+  enclosure_size: string;
 }
 
 @injectable()
@@ -22,7 +22,7 @@ export default class CreateEntityService {
     code,
     description,
     size,
-    enclosure_size_id,
+    enclosure_size,
   }: IRequestDTO): Promise<Enclosure> {
     if (code) {
       const checkCodeExist = await this.entityRepository.findByCode(code);
@@ -38,7 +38,7 @@ export default class CreateEntityService {
       code,
       description,
       size,
-      enclosure_size_id,
+      enclosure_size,
     });
 
     return result;

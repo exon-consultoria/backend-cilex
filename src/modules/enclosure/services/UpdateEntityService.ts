@@ -9,7 +9,7 @@ interface IRequestDTO {
   code?: string;
   description?: string;
   size?: string;
-  enclosure_size_id?: string;
+  enclosure_size?: string;
 }
 
 @injectable()
@@ -24,7 +24,7 @@ export default class UpdateEntityService {
     description,
     code,
     size,
-    enclosure_size_id,
+    enclosure_size,
   }: IRequestDTO): Promise<Enclosure> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
@@ -44,7 +44,7 @@ export default class UpdateEntityService {
     entity.code = code || entity.code;
     entity.description = description || entity.description;
     entity.size = size || entity.size;
-    entity.enclosure_size_id = enclosure_size_id || entity.enclosure_size_id;
+    entity.enclosure_size = enclosure_size || entity.enclosure_size;
 
     return this.entityRepository.update(entity);
   }

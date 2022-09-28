@@ -1,13 +1,15 @@
-import EnclosureSize from '@modules/enclosure_size/infra/typeorm/entities/EnclosureSize';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
+
+interface IEnclosureSizeProps {
+  size: '';
+  capacity: '';
+}
 
 @Entity('enclosures')
 class Enclosure {
@@ -20,12 +22,11 @@ class Enclosure {
   @Column('varchar')
   description: string;
 
-  @Column()
-  enclosure_size_id: string;
-
-  @ManyToOne(() => EnclosureSize)
-  @JoinColumn({ name: 'enclosure_size_id' })
-  enclosure_size: EnclosureSize;
+  @Column('json', {
+    array: true,
+    default: [{ size: '', capacity: '', available: '' }],
+  })
+  enclosure_size: IEnclosureSizeProps[];
 
   @Column('varchar')
   size: string;
