@@ -37,7 +37,7 @@ class Pet {
   castrated: boolean;
 
   @Column('varchar')
-  dog_size: string;
+  size: string;
 
   @Column()
   items: string;
