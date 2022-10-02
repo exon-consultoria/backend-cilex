@@ -7,13 +7,12 @@ import { errors } from 'celebrate';
 import AppError from '@shared/errors/AppError';
 import 'express-async-errors';
 
-import  '@shared/infra/typeorm';
+import '@shared/infra/typeorm';
 import uploadConfig from '../../../config/upload';
 
 import routes from './routes';
 
 import '@shared/container';
-
 
 const app = express();
 

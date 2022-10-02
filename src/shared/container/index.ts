@@ -82,6 +82,12 @@ import IWorkRepository from '@modules/work/repositories/IEntityRepository';
 import AppointmentRepository from '@modules/appointment/infra/typeorm/repositories/EntityRepository';
 import IAppointmentRepository from '@modules/appointment/repositories/IEntityRepository';
 
+import IncomeRepository from '@modules/income/infra/typeorm/repositories/IncomeRepository';
+import IIncomeRepository from '@modules/income/repositories/IIncomeRepository';
+
+import EntryRepository from '@modules/entry/infra/typeorm/repositories/EntryRepository';
+import IEntryRepository from '@modules/entry/repositories/IEntryRepository';
+
 container.registerSingleton<IAppointmentRepository>(
   'AppointmentRepository',
   AppointmentRepository,
@@ -220,4 +226,14 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUserTokensRepository>(
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<IIncomeRepository>(
+  'IncomeRepository',
+  IncomeRepository,
+);
+
+container.registerSingleton<IEntryRepository>(
+  'EntryRepository',
+  EntryRepository,
 );
