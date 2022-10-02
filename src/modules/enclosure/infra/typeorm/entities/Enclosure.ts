@@ -6,6 +6,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+interface IEnclosureSizeProps {
+  size: '';
+  capacity: '';
+}
+
 @Entity('enclosures')
 class Enclosure {
   @PrimaryGeneratedColumn('uuid')
@@ -16,6 +21,15 @@ class Enclosure {
 
   @Column('varchar')
   description: string;
+
+  @Column('json', {
+    array: true,
+    default: [{ size: '', capacity: '', available: '' }],
+  })
+  enclosure_size: IEnclosureSizeProps[];
+
+  @Column('varchar')
+  size: string;
 
   @CreateDateColumn()
   created_at: Date;

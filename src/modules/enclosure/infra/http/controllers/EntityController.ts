@@ -9,13 +9,14 @@ import DeleteEntityService from '@modules/enclosure/services/DeleteEntityService
 
 export default class EntityController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, description, size, enclosure_size } = req.body;
 
     const createEntity = container.resolve(CreateEntityService);
 
     const entity = await createEntity.execute({
       code,
-
+      size,
+      enclosure_size,
       description,
     });
 
@@ -41,7 +42,7 @@ export default class EntityController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { code, description } = req.body;
+    const { code, description, size, enclosure_size } = req.body;
 
     const { id } = req.params;
 
@@ -50,7 +51,8 @@ export default class EntityController {
     const entity = await update.execute({
       id: id as string,
       code,
-
+      size,
+      enclosure_size,
       description,
     });
 

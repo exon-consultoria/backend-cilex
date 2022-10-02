@@ -9,4 +9,5 @@ export default interface ICreateEntityDTO {
   enclosure_id?: string;
   owner_id: string;
   note?: string;
+  size: string;
 }

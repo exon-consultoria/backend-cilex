@@ -19,6 +19,7 @@ interface IRequestDTO {
   enclosure_id?: string;
   owner_id?: string;
   note?: string;
+  size?: string;
 }
 
 @injectable()
@@ -47,6 +48,7 @@ export default class UpdateEntityService {
     enclosure_id,
     owner_id,
     note,
+    size,
   }: IRequestDTO): Promise<Pet> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
@@ -103,6 +105,7 @@ export default class UpdateEntityService {
     entity.enclosure_id = enclosure_id || entity.enclosure_id;
     entity.owner_id = owner_id || entity.owner_id;
     entity.note = note || entity.note;
+    entity.size = size || entity.size;
 
     return this.entityRepository.update(entity);
   }

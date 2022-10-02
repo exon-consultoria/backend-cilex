@@ -18,6 +18,7 @@ interface IRequestDTO {
   vaccines?: string[];
   owner_id: string;
   note?: string;
+  size: string;
 }
 
 @injectable()
@@ -45,6 +46,7 @@ export default class CreateEntityService {
     vaccines,
     owner_id,
     note,
+    size,
   }: IRequestDTO): Promise<Pet> {
     const result = await this.entityRepository.create({
       name,
@@ -57,6 +59,7 @@ export default class CreateEntityService {
       enclosure_id,
       owner_id,
       note,
+      size,
     });
 
     if (vaccines) {

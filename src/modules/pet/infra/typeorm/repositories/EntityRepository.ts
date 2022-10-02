@@ -39,6 +39,7 @@ class EntityRepository implements IEntityRepository {
     enclosure_id,
     owner_id,
     note,
+    size,
   }: ICreateEntityDTO): Promise<Pet> {
     const result = this.ormRepository.create({
       name,
@@ -51,6 +52,7 @@ class EntityRepository implements IEntityRepository {
       note,
       sociable,
       castrated,
+      size,
     });
 
     await this.ormRepository.save(result);
