@@ -9,6 +9,7 @@ export default class AddSizeToPet1664400246198 implements MigrationInterface {
       new TableColumn({
         name: 'size',
         type: 'varchar',
+        isNullable: true,
       }),
     );
   }

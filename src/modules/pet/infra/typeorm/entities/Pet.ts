@@ -36,7 +36,7 @@ class Pet {
   @Column('boolean')
   castrated: boolean;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   size: string;
 
   @Column()
