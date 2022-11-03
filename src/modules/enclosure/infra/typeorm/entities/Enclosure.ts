@@ -25,6 +25,7 @@ class Enclosure {
   @Column('json', {
     array: true,
     default: [{ size: '', capacity: '', available: '' }],
+    nullable: true,
   })
   enclosure_size: IEnclosureSizeProps[];
 
