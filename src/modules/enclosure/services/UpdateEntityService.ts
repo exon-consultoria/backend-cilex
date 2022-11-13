@@ -9,7 +9,9 @@ interface IRequestDTO {
   code?: string;
   description?: string;
   size?: string;
-  enclosure_size?: string;
+  enclosure_size_big?: string;
+  enclosure_size_medium?: string;
+  enclosure_size_small?: string;
 }
 
 @injectable()
@@ -24,7 +26,12 @@ export default class UpdateEntityService {
     description,
     code,
     size,
-    enclosure_size,
+    enclosure_size_big,
+    enclosure_size_big_available,
+    enclosure_size_medium,
+    enclosure_size_medium_available,
+    enclosure_size_small,
+    enclosure_size_small_available,
   }: IRequestDTO): Promise<Enclosure> {
     const entity = await this.entityRepository.findById(id);
     if (!entity) {
@@ -44,7 +51,23 @@ export default class UpdateEntityService {
     entity.code = code || entity.code;
     entity.description = description || entity.description;
     entity.size = size || entity.size;
-    entity.enclosure_size = enclosure_size || entity.enclosure_size;
+
+    entity.enclosure_size_big = enclosure_size_big || entity.enclosure_size_big;
+
+    entity.enclosure_size_big_available =
+      enclosure_size_big_available || entity.enclosure_size_big_available;
+
+    entity.enclosure_size_medium =
+      enclosure_size_medium || entity.enclosure_size_medium;
+
+    entity.enclosure_size_medium_available =
+      enclosure_size_medium_available || entity.enclosure_size_medium_available;
+
+    entity.enclosure_size_small =
+      enclosure_size_small || entity.enclosure_size_small;
+
+    entity.enclosure_size_small_available =
+      enclosure_size_small_available || entity.enclosure_size_small_available;
 
     return this.entityRepository.update(entity);
   }

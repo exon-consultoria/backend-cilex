@@ -32,13 +32,23 @@ class EntityRepository implements IEntityRepository {
     code,
     description,
     size,
-    enclosure_size,
+    enclosure_size_big,
+    enclosure_size_big_available,
+    enclosure_size_medium,
+    enclosure_size_medium_available,
+    enclosure_size_small,
+    enclosure_size_small_available,
   }: ICreateEntityDTO): Promise<Enclosure> {
     const result = this.ormRepository.create({
       code,
       description,
       size,
-      enclosure_size,
+      enclosure_size_big,
+      enclosure_size_big_available,
+      enclosure_size_medium,
+      enclosure_size_medium_available,
+      enclosure_size_small,
+      enclosure_size_small_available,
     });
 
     await this.ormRepository.save(result);

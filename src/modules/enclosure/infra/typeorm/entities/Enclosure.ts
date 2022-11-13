@@ -6,11 +6,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-interface IEnclosureSizeProps {
-  size: '';
-  capacity: '';
-}
-
 @Entity('enclosures')
 class Enclosure {
   @PrimaryGeneratedColumn('uuid')
@@ -22,12 +17,23 @@ class Enclosure {
   @Column('varchar')
   description: string;
 
-  @Column('json', {
-    array: true,
-    default: [{ size: '', capacity: '', available: '' }],
-    nullable: true,
-  })
-  enclosure_size: IEnclosureSizeProps[];
+  @Column('varchar', { nullable: true })
+  enclosure_size_big: string;
+
+  @Column('varchar', { nullable: true })
+  enclosure_size_big_available: string;
+
+  @Column('varchar', { nullable: true })
+  enclosure_size_medium: string;
+
+  @Column('varchar', { nullable: true })
+  enclosure_size_medium_available: string;
+
+  @Column('varchar', { nullable: true })
+  enclosure_size_small: string;
+
+  @Column('varchar', { nullable: true })
+  enclosure_size_small_available: string;
 
   @Column('varchar')
   size: string;
