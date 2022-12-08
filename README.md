@@ -31,7 +31,7 @@ Follow these simple instructions to set up a local development environment.
   yarn
   ```
 
-2. Config Docker
+2. Initialize Docker
 
   ```bash
   docker-compose up
